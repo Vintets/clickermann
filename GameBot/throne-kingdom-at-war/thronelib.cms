@@ -1,0 +1,104 @@
+#logfile
+//координаты кнопки "«акрыть"
+$Icon_Close_X = 1214
+$Icon_Close_Y = 264
+
+$Icon_CloseWide_X = 1317
+$Icon_CloseWide_Y = 264
+
+//библиотека стандартных решений дл€ игры "Throne"
+//$lX , $lY - координаты точки
+sub(MoveAndClick, $lX , $lY)
+   
+   $DelayR     = RND(100, 150)
+   $LongDelayR = RND(650, 750)
+   
+   move($lX,$lY)
+   waitms($DelayR)
+   
+   lDown($lX,$lY)
+   waitms($DelayR)
+   
+   lUp($lX,$lY)
+   
+   //спец. задержка после нажати€. чтобы сервер обработал клик
+   //иначе много кликов пройдЄт впустую
+   waitms($LongDelayR)
+   
+end_sub
+
+//квесты - это очень просто алгоритм
+//т.к. все элементы на своЄм мести и доп. условий мало - сделаем всЄ на координатах
+//один раз прописал - работать будет всегда и быстро
+SUB(DoErrandsOnPage) // подпрограмма
+   
+   //координаты кнопки "¬ыполнить квест" "Start"
+   $Icon_Start_X = 1161
+   $Icon_Start_Y = 439
+   
+   FOR($a = 0, $a < 15)
+      MoveAndClick($Icon_Start_X, $Icon_Start_Y)
+      MoveAndClick($Icon_Start_X, $Icon_Start_Y)
+   END_CYC
+   
+END_SUB
+
+SUB(DoErrands)
+   
+   //координаты иконки к квестами
+   $Icon_Errand_X = 50
+   $Icon_Errand_Y = 279
+   
+   //координаты вкладки "ќбычные" (Special)
+   $Icon_UsualErrand_X = 775
+   $Icon_UsualErrand_Y = 328
+   
+   //смещение дл€ перехода по вкладкам
+   $DeltaX = 200
+   
+   //открываем окно выполнени€ заданий
+   MoveAndClick($Icon_Errand_X, $Icon_Errand_Y)
+   
+   //на 3х вкладках выполн€ем задани€
+   FOR($kv = 0, $kv < 3)
+      $lx = $Icon_UsualErrand_X + $kv * $DeltaX
+      MoveAndClick($lx, $Icon_UsualErrand_Y)
+      DoErrandsOnPage()
+   END_CYC
+   
+   MoveAndClick($Icon_Close_X, $Icon_Close_Y)
+   
+END_SUB
+
+SUB(TakeTreasure)
+   
+   $Icon_Treasure_X = 1741
+   $Icon_Treasure_Y = 949
+   
+   $Icon_Claim_X = 957
+   $Icon_Claim_Y = 876
+   
+   //открываем окно выполнени€ заданий
+   MoveAndClick($Icon_Treasure_X, $Icon_Treasure_Y)
+   MoveAndClick($Icon_Claim_X, $Icon_Claim_Y)
+   
+END_SUB
+
+SUB(HelpOrderMembers)
+   
+   $Icon_Guild_X = 1635
+   $Icon_Guild_Y = 1030
+   
+   $Icon_HelpOrderMembers_X = 663
+   $Icon_HelpOrderMembers_Y = 785
+   
+   $Icon_HelpAll_X = 1153
+   $Icon_HelpAll_Y = 826
+   
+   MoveAndClick($Icon_Guild_X, $Icon_Guild_Y)
+   MoveAndClick($Icon_HelpOrderMembers_X, $Icon_HelpOrderMembers_Y)
+   MoveAndClick($Icon_HelpAll_X, $Icon_HelpAll_Y)
+   MoveAndClick($Icon_Close_X, $Icon_Close_Y)
+   MoveAndClick($Icon_CloseWide_X, $Icon_CloseWide_Y)
+
+END_SUB
