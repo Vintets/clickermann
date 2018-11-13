@@ -160,9 +160,6 @@ SUB(ChooseResource, $ResourceTypel)
       
    END_SWITCH
    
-   
-   
-   
 END_SUB
 
 SUB(TakeResource, $ResourceType, $NumberOfSoldiers, $Sdvig)
@@ -229,6 +226,44 @@ SUB(ÑollectResources)
    //2 íà ñåðåáðî
    TakeResource(5, 2000, 0)
    TakeResource(5, 2000, 1)
+   
+END_SUB
+
+
+SUB(OpenWorkshop)
+   
+   $Icon_MainMenu_X = 1435
+   $Icon_MainMenu_Y = 1056
+   
+   $Icon_Workshop_X = 1489
+   $Icon_Workshop_Y = 1103
+   
+   MoveAndClick($Icon_MainMenu_X, $Icon_MainMenu_Y)
+   
+   MoveAndClick($Icon_Workshop_X, $Icon_Workshop_Y)
+   
+END_SUB
+
+SUB(CreateMaterial)
+   
+	 OpenWorkshop()
+	 
+	 $Icon_Titles_X = 715
+   $Icon_Titles_Y = 910
+   
+	 $Icon_Material_X = 893
+   $Icon_Material_Y = 530
+
+   $Icon_Combine_X = 705
+   $Icon_Combine_Y = 843
+   
+   MoveAndClick($Icon_Titles_X, $Icon_Titles_Y)
+   
+   MoveAndClick($Icon_Material_X, $Icon_Material_Y)
+   
+	 MoveAndClick($Icon_Combine_X, $Icon_Combine_Y)
+   
+	 MoveAndClick($Icon_CloseWide_X, $Icon_CloseWide_Y)
    
 END_SUB
 

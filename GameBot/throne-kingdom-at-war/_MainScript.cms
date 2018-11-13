@@ -6,11 +6,11 @@ LOGCLEAR
 
 
 // поток
-THREAD(thr_name)
- 	#include "thronelib.cms"
-    waitms(60*1000) // задержка для разгрузки CPU
-  HelpOrderMembers()
-END_THREAD
+//THREAD(thr_name)
+ 	//#include "thronelib.cms"
+  //HelpOrderMembers()
+  //  waitms(5*560*1000) // задержка для разгрузки CPU
+//END_THREAD
 
 setThread(thr_name, 1)
 
@@ -28,6 +28,10 @@ END_IF
 
 IF(ISKEYDOWN(#4)=1)
    СollectResources()
+END_IF
+ 
+ IF(ISKEYDOWN(#5)=1)
+   CreateMaterial()
 END_IF
 
 WAITMS(20)
