@@ -1,0 +1,33 @@
+#include "thronelib.cms"
+#logfile
+
+//основной алгоритм
+LOGCLEAR
+
+
+// поток
+THREAD(thr_name)
+ 	#include "thronelib.cms"
+    waitms(60*1000) // задержка для разгрузки CPU
+  HelpOrderMembers()
+END_THREAD
+
+setThread(thr_name, 1)
+
+IF(ISKEYDOWN(#1)=1)
+   DoErrands()
+END_IF
+
+IF(ISKEYDOWN(#2)=1)
+   TakeTreasure()
+END_IF
+
+IF(ISKEYDOWN(#3)=1)
+   HelpOrderMembers()
+END_IF
+
+IF(ISKEYDOWN(#4)=1)
+   СollectResources()
+END_IF
+
+WAITMS(20)

@@ -72,14 +72,18 @@ END_SUB
 
 SUB(TakeTreasure)
    
-   $Icon_Treasure_X = 1710
-   $Icon_Treasure_Y = 1101
+   $Icon_Treasure_X = 1740
+   $Icon_Treasure_Y = 1006
    
-   $Icon_Claim_X = 935
+   $Icon_Claim_X = 950
    $Icon_Claim_Y = 947
    
    //открываем окно выполнения заданий
    MoveAndClick($Icon_Treasure_X, $Icon_Treasure_Y)
+
+   $LongDelayR = RND(650, 750)
+   waitms($LongDelayR)
+
    MoveAndClick($Icon_Claim_X, $Icon_Claim_Y)
    
 END_SUB
@@ -161,7 +165,7 @@ SUB(ChooseResource, $ResourceTypel)
    
 END_SUB
 
-SUB(TakeResource, $ResourceType, $NumberOfSoldiers)
+SUB(TakeResource, $ResourceType, $NumberOfSoldiers, $Sdvig)
    
    //Координаты области экрана по которой будем проверять, что ресурс  занят
    $Field_CheckScreen_Xstart = 1107
@@ -186,7 +190,7 @@ SUB(TakeResource, $ResourceType, $NumberOfSoldiers)
    OpenWatchman()
    ChooseResource($ResourceType)
    
-   MoveAndClick($Button_Capture_X, $Button_Capture_Y + $a * $DeltaY)  // 0
+   MoveAndClick($Button_Capture_X, $Button_Capture_Y + $Sdvig * $DeltaY)  // 0
    MoveAndClick($Field_Army_X,$Field_Army_Y)  // 0
    
    KEYSTRING($NumberOfSoldiers)
@@ -215,17 +219,16 @@ END_SUB
 SUB(СollectResources)
    
    //2 на еду
-	 TakeResource(1, 5000)
-   TakeResource(1, 5000)
+   TakeResource(1, 5000, 0)
+   TakeResource(1, 5000, 1)
    
-	 //2 на железо
-	 TakeResource(4, 3000)
-   TakeResource(4, 5000)
+   //2 на железо
+   TakeResource(4, 3000, 0)
+   TakeResource(4, 3000, 1)
    
    //2 на серебро
-	 TakeResource(5, 2000)
-   TakeResource(5, 5000)
-   MoveAndClick($Icon_CloseWide_X, $Icon_CloseWide_Y)
+   TakeResource(5, 2000, 0)
+   TakeResource(5, 2000, 1)
    
 END_SUB
 
