@@ -80,15 +80,18 @@ SUB(TakeTreasure)
    
    //открываем окно выполнения заданий
    MoveAndClick($Icon_Treasure_X, $Icon_Treasure_Y)
-
+   
    $LongDelayR = RND(650, 750)
    waitms($LongDelayR)
-
+   
    MoveAndClick($Icon_Claim_X, $Icon_Claim_Y)
    
 END_SUB
 
 SUB(HelpOrderMembers)
+   
+   $Icon_MainMenu_X = 1395
+   $Icon_MainMenu_Y = 1056
    
    $Icon_Guild_X = 1635
    $Icon_Guild_Y = 1095
@@ -99,6 +102,7 @@ SUB(HelpOrderMembers)
    $Icon_HelpAll_X = 1153
    $Icon_HelpAll_Y = 899
    
+   MoveAndClick($Icon_MainMenu_X, $Icon_MainMenu_Y)
    MoveAndClick($Icon_Guild_X, $Icon_Guild_Y)
    MoveAndClick($Icon_HelpOrderMembers_X, $Icon_HelpOrderMembers_Y)
    MoveAndClick($Icon_HelpAll_X, $Icon_HelpAll_Y)
@@ -162,7 +166,7 @@ SUB(ChooseResource, $ResourceTypel)
    
 END_SUB
 
-SUB(TakeResource, $ResourceType, $NumberOfSoldiers, $Sdvig)
+SUB(TakeResource, $ResourceType, $NumberOfSoldiers, $Sdvig, $SecondArmy)
    
    //Координаты области экрана по которой будем проверять, что ресурс  занят
    $Field_CheckScreen_Xstart = 1107
@@ -192,6 +196,14 @@ SUB(TakeResource, $ResourceType, $NumberOfSoldiers, $Sdvig)
    
    KEYSTRING($NumberOfSoldiers)
    
+   IF($SecondArmy = 2)
+      
+      MoveAndClick($Field_Army_X,$Field_Army_Y + 100)  // 0
+      KEYSTRING($NumberOfSoldiers)
+      
+   END_IF
+   
+   
    MoveAndClick($Button_Send_X,$Button_Send_Y)  // 0
    
    //закрыть маленькое окно
@@ -213,23 +225,6 @@ SUB(TakeResource, $ResourceType, $NumberOfSoldiers, $Sdvig)
    
 END_SUB
 
-SUB(СollectResources)
-   
-   //2 на еду
-   TakeResource(1, 5000, 0)
-   TakeResource(1, 5000, 1)
-   
-   //2 на железо
-   TakeResource(4, 3000, 0)
-   TakeResource(4, 3000, 1)
-   
-   //2 на серебро
-   TakeResource(5, 2000, 0)
-   TakeResource(5, 2000, 1)
-   
-END_SUB
-
-
 SUB(OpenWorkshop)
    
    $Icon_MainMenu_X = 1435
@@ -244,26 +239,29 @@ SUB(OpenWorkshop)
    
 END_SUB
 
-SUB(CreateMaterial)
+SUB(CreateMaterial, $NumberofMaterial)
    
-	 OpenWorkshop()
-	 
-	 $Icon_Titles_X = 715
+   OpenWorkshop()
+   
+   $Icon_Titles_X = 715
    $Icon_Titles_Y = 910
    
-	 $Icon_Material_X = 893
+   $Icon_Material_X = 893
    $Icon_Material_Y = 530
-
+   
    $Icon_Combine_X = 705
    $Icon_Combine_Y = 843
    
    MoveAndClick($Icon_Titles_X, $Icon_Titles_Y)
    
-   MoveAndClick($Icon_Material_X, $Icon_Material_Y)
+   $Num = INT($NumberofMaterial)
    
-	 MoveAndClick($Icon_Combine_X, $Icon_Combine_Y)
+   FOR($a = 0,$a<$Num) // повторяем 3 раза
+      MoveAndClick($Icon_Material_X, $Icon_Material_Y)
+      MoveAndClick($Icon_Combine_X, $Icon_Combine_Y)
+   END_CYC
    
-	 MoveAndClick($Icon_CloseWide_X, $Icon_CloseWide_Y)
+   MoveAndClick($Icon_CloseWide_X, $Icon_CloseWide_Y)
    
 END_SUB
 
