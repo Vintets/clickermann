@@ -1,10 +1,10 @@
 #logfile
 //координаты кнопки "Закрыть"
 $Icon_Close_X = 1214
-$Icon_Close_Y = 264
+$Icon_Close_Y = 350
 
 $Icon_CloseWide_X = 1317
-$Icon_CloseWide_Y = 264
+$Icon_CloseWide_Y = 350
 
 //библиотека стандартных решений для игры "Throne"
 //$lX , $lY - координаты точки
@@ -34,7 +34,7 @@ SUB(DoErrandsOnPage) // подпрограмма
    
    //координаты кнопки "Выполнить квест" "Start"
    $Icon_Start_X = 1161
-   $Icon_Start_Y = 439
+   $Icon_Start_Y = 515
    
    FOR($a = 0, $a < 15)
       MoveAndClick($Icon_Start_X, $Icon_Start_Y)
@@ -47,11 +47,11 @@ SUB(DoErrands)
    
    //координаты иконки к квестами
    $Icon_Errand_X = 50
-   $Icon_Errand_Y = 279
+   $Icon_Errand_Y = 365
    
    //координаты вкладки "Обычные" (Special)
    $Icon_UsualErrand_X = 775
-   $Icon_UsualErrand_Y = 328
+   $Icon_UsualErrand_Y = 379
    
    //смещение для перехода по вкладкам
    $DeltaX = 200
@@ -72,11 +72,11 @@ END_SUB
 
 SUB(TakeTreasure)
    
-   $Icon_Treasure_X = 1741
-   $Icon_Treasure_Y = 949
+   $Icon_Treasure_X = 1710
+   $Icon_Treasure_Y = 1101
    
-   $Icon_Claim_X = 957
-   $Icon_Claim_Y = 876
+   $Icon_Claim_X = 935
+   $Icon_Claim_Y = 947
    
    //открываем окно выполнения заданий
    MoveAndClick($Icon_Treasure_X, $Icon_Treasure_Y)
@@ -87,18 +87,145 @@ END_SUB
 SUB(HelpOrderMembers)
    
    $Icon_Guild_X = 1635
-   $Icon_Guild_Y = 1030
+   $Icon_Guild_Y = 1095
    
    $Icon_HelpOrderMembers_X = 663
-   $Icon_HelpOrderMembers_Y = 785
+   $Icon_HelpOrderMembers_Y = 870
    
    $Icon_HelpAll_X = 1153
-   $Icon_HelpAll_Y = 826
+   $Icon_HelpAll_Y = 899
    
    MoveAndClick($Icon_Guild_X, $Icon_Guild_Y)
    MoveAndClick($Icon_HelpOrderMembers_X, $Icon_HelpOrderMembers_Y)
    MoveAndClick($Icon_HelpAll_X, $Icon_HelpAll_Y)
    MoveAndClick($Icon_Close_X, $Icon_Close_Y)
    MoveAndClick($Icon_CloseWide_X, $Icon_CloseWide_Y)
-
+   
 END_SUB
+
+
+SUB(OpenWatchman)
+   
+   $Icon_MainMenu_X = 1395
+   $Icon_MainMenu_Y = 1056
+   
+   $Icon_Watchman_X = 1704
+   $Icon_Watchman_Y = 1103
+   
+   MoveAndClick($Icon_MainMenu_X, $Icon_MainMenu_Y)
+   
+   MoveAndClick($Icon_Watchman_X, $Icon_Watchman_Y)
+   
+END_SUB
+
+SUB(ChooseResource, $ResourceTypel)
+   
+   $Icon_ChooseMenu_X = 820
+   $Icon_ChooseMenu_Y = 480
+   
+   $HuntersSettlement_X = 750
+   $HuntersSettlement_Y = 551
+   
+   $OreMine_X = 750
+   $OreMine_Y = 650
+   
+   $Fief_X = 750
+   $Fief_Y = 685
+   
+   //вызвали подменю
+   MoveAndClick($Icon_ChooseMenu_X,$Icon_ChooseMenu_Y)
+   
+   SWITCH($ResourceTypel)
+      
+   CASE(1)
+      
+      //выбрали еду
+      MoveAndClick($HuntersSettlement_X,$HuntersSettlement_Y)
+      
+   CASE(4)
+      //выбрали железо
+      MoveAndClick($OreMine_X, $OreMine_Y)
+      
+   CASE(5)
+      //выбрали серебро
+      MoveAndClick($Fief_X,$Fief_Y)
+      
+   DEFAULT
+      //выбрали еду
+      MoveAndClick($HuntersSettlement_X,$HuntersSettlement_Y)
+      
+   END_SWITCH
+   
+   
+   
+   
+END_SUB
+
+SUB(TakeResource, $ResourceType, $NumberOfSoldiers)
+   
+   //Координаты области экрана по которой будем проверять, что ресурс  занят
+   $Field_CheckScreen_Xstart = 1107
+   $Field_CheckScreen_Ystart = 623
+   
+   $Field_CheckScreen_Xend = 1188
+   $Field_CheckScreen_Yend = 646
+   
+   $Color_ResourceNotClear = 1384091
+   
+   $DeltaY = 150
+   
+   $Button_Capture_X = 1262
+   $Button_Capture_Y = 620
+   
+   $Field_Army_X = 1163
+   $Field_Army_Y = 573
+   
+   $Button_Send_X = 1169
+   $Button_Send_Y = 910
+   
+   OpenWatchman()
+   ChooseResource($ResourceType)
+   
+   MoveAndClick($Button_Capture_X, $Button_Capture_Y + $a * $DeltaY)  // 0
+   MoveAndClick($Field_Army_X,$Field_Army_Y)  // 0
+   
+   KEYSTRING($NumberOfSoldiers)
+   
+   MoveAndClick($Button_Send_X,$Button_Send_Y)  // 0
+   
+   //закрыть маленькое окно
+   //$Ystart = $Field_CheckScreen_Ystart + $a * $DeltaY
+   //$Yend   = $Field_CheckScreen_Yend + $a * $DeltaY
+   
+   //GETSCREEN ($Field_CheckScreen_Xstart, $Ystart, $Field_CheckScreen_Xend, $Yend)
+   // LOGWRITE ($Field_CheckScreen_Xstart, $Ystart, $Field_CheckScreen_Xend, $Yend)
+   
+   //IF_PIXEL_IN($Field_CheckScreen_Xstart, $Ystart, $Field_CheckScreen_Xend, $Yend, $Color_ResourceNotClear
+   // LOGWRITE ("Цвет найден")
+   
+   //ELSE
+   // LOGWRITE ("Цвет не найден")
+   
+   
+   // END_IF
+   
+   
+END_SUB
+
+SUB(СollectResources)
+   
+   //2 на еду
+	 TakeResource(1, 5000)
+   TakeResource(1, 5000)
+   
+	 //2 на железо
+	 TakeResource(4, 3000)
+   TakeResource(4, 5000)
+   
+   //2 на серебро
+	 TakeResource(5, 2000)
+   TakeResource(5, 5000)
+   MoveAndClick($Icon_CloseWide_X, $Icon_CloseWide_Y)
+   
+END_SUB
+
