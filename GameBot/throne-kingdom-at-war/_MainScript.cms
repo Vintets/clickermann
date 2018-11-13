@@ -1,6 +1,5 @@
 #include "thronelib.cms"
 #logfile
-
 //основной алгоритм
 LOGCLEAR
 
@@ -41,22 +40,42 @@ IF(ISKEYDOWN(#ALT)=1)
       TakeResource(1, $NumberofSolder, 1, $ArmyTypes)
       
       //2 на железо
-      TakeResource(4, $NumberofSolder, 0, $ArmyTypes)
-      TakeResource(4, $NumberofSolder, 1, $ArmyTypes)
+      TakeResource(2, $NumberofSolder*0.65, 0, $ArmyTypes)
+      TakeResource(2, $NumberofSolder*0.65, 1, $ArmyTypes)
       
       //2 на серебро
-      TakeResource(5, $NumberofSolder, 0, $ArmyTypes)
-      TakeResource(5, $NumberofSolder, 1, $ArmyTypes)
+      TakeResource(3, $NumberofSolder*0.75, 0, $ArmyTypes)
+      TakeResource(5, $NumberofSolder*0.5, 1, $ArmyTypes)
       
    END_IF
    
    IF(ISKEYDOWN(#5)=1)
       
-
-      move(ROUND($_xmax/2, 0), ROUND($_ymax/2, 0))
-			$NumberofMaterial = INPUTBOX("Cколько материалов вы хотите создать?", "5", 20)
+      
+      move(945, 707)
+      $NumberofMaterial = INPUTBOX("Cколько материалов вы хотите создать?", "5", 20)
       
       CreateMaterial($NumberofMaterial)
+   END_IF
+   
+   IF(ISKEYDOWN(#6)=1)
+      
+      //послать на 1 ресурс
+      $ResourceType = RADIOBOX("Какой тип ресурса вы хотите собрать?", "1 - еда", "2 - камень", "3 - дерево", "4 - железо", "5 - серебро")
+      $ResourceType =  INT(STRCUT($ResourceType, 1, 1))
+      
+      $ArmyTypes = RADIOBOX("Сколько видов войск вы хотите послать на ресурс?", "1", "2")
+      $ArmyTypes =  INT($ArmyTypes)
+      
+      $NumberofSolder = INPUTBOX("Cколько материалов вы хотите создать?", "5000", 20)
+      $NumberofSolder =  INT($NumberofSolder)
+      
+      $String = RADIOBOX("1я или 2я строка в выборе ресурса?", "1", "2")
+      $String =  INT($String) - 1
+      IF($NumberofSolder ! 0 AND $ArmyTypes ! 0)
+         TakeResource($ResourceType, $NumberofSolder, $String, $ArmyTypes)
+      END_IF
+      
    END_IF
    
    WAITMS(50)

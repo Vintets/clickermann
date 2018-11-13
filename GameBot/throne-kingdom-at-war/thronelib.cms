@@ -134,6 +134,12 @@ SUB(ChooseResource, $ResourceTypel)
    $HuntersSettlement_X = 750
    $HuntersSettlement_Y = 551
    
+   $StonePit_X = 750
+   $StonePit_Y = 716
+   
+   $LoggersCamp_X = 750
+   $LoggersCamp_Y = 741
+   
    $OreMine_X = 750
    $OreMine_Y = 650
    
@@ -149,6 +155,16 @@ SUB(ChooseResource, $ResourceTypel)
       
       //выбрали еду
       MoveAndClick($HuntersSettlement_X,$HuntersSettlement_Y)
+      
+   CASE(2)
+      
+      //выбрали камень
+      MoveAndClick($StonePit_X, $StonePit_Y)
+      
+   CASE(3)
+      
+      //выбрали дерево
+      MoveAndClick($LoggersCamp_X,$LoggersCamp_Y)
       
    CASE(4)
       //выбрали железо
