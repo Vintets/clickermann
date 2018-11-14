@@ -1,66 +1,8 @@
-
-////секция основное меню
-//INIWRITE("config.ini", "Icon_MainMenu1_X", 1395, "MainMenu")
-//INIWRITE("config.ini", "Icon_MainMenu1_Y", 1056, "MainMenu")
-
-//INIWRITE("config.ini", "Icon_MainMenu2_X", 1435, "MainMenu")
-//INIWRITE("config.ini", "Icon_MainMenu2_Y", 1056, "MainMenu")
-
-//INIWRITE("config.ini", "Icon_Guild_X", 1635, "MainMenu")
-//INIWRITE("config.ini", "Icon_Guild_Y", 1103, "MainMenu")
-
-//INIWRITE("config.ini", "Icon_Watchman_X", 1704, "MainMenu")
-//INIWRITE("config.ini", "Icon_Watchman_Y", 1103, "MainMenu")
-
-//INIWRITE("config.ini", "Icon_Workshop_X", 1489, "MainMenu")
-//INIWRITE("config.ini", "Icon_Workshop_Y", 1103, "MainMenu")
-
-////секция гильдия
-
-//INIWRITE("config.ini", "Icon_HelpOrderMembers_X", 663, "Guild")
-//INIWRITE("config.ini", "Icon_HelpOrderMembers_Y", 870, "Guild")
-
-//INIWRITE("config.ini", "Button_HelpAll_X", 1153, "Guild")
-//INIWRITE("config.ini", "Button_HelpAll_Y", 899, "Guild")
-
-////секция сбор ресурсов
-//INIWRITE("config.ini", "Icon_ResourcesChooseMenu_X", 820, "Resources")
-//INIWRITE("config.ini", "Icon_ResourcesChooseMenu_Y", 480, "Resources")
-
-//INIWRITE("config.ini", "ResourcesChoose_X",   750, "Resources")
-
-//INIWRITE("config.ini", "HuntersSettlement_Y", 551, "Resources")
-//INIWRITE("config.ini", "StonePit_Y ",         716, "Resources")
-//INIWRITE("config.ini", "LoggersCamp_Y",       741, "Resources")
-//INIWRITE("config.ini", "OreMine_Y",           650, "Resources")
-//INIWRITE("config.ini", "Fief_Y",              685, "Resources")
-
-//INIWRITE("config.ini", "DeltaResourcesY", 150, "Resources")
-
-//INIWRITE("config.ini", "Button_Capture_X", 1262, "Resources")
-//INIWRITE("config.ini", "Button_Capture_Y", 620, "Resources")
-
-//INIWRITE("config.ini", "Field_Army_X", 1163, "Resources")
-//INIWRITE("config.ini", "Field_Army_Y", 573, "Resources")
-
-//INIWRITE("config.ini", "Button_Send_X", 1169, "Resources")
-//INIWRITE("config.ini", "Button_Send_Y", 910, "Resources")
-
-////секция Workshop
-
-//INIWRITE("config.ini", "Button_Titles_X", 715, "Workshop")
-//INIWRITE("config.ini", "Button_Titles_Y", 910, "Workshop")
-
-//INIWRITE("config.ini", "Icon_Material_X", 893, "Workshop")
-//INIWRITE("config.ini", "Icon_Material_Y", 530, "Workshop")
-
-//INIWRITE("config.ini", "Button_Combine_X", 705, "Workshop")
-//INIWRITE("config.ini", "Button_Combine_Y", 843, "Workshop")
 $filename = "config.ini"
 #logfile
 
 
-SUB (WriteCoord, $Button_Name, $section)
+SUB (WriteCoord, $Button_NameX, $Button_NameY, $section)
    
    While(iskeydown(1)=0)
       WAITMS(10)
@@ -79,10 +21,10 @@ SUB (Coordclose)
    $Result = RADIOBOX("Какие координаты вы хотите изменить?", "1 - кнопка 'Закрыть'", "2 - кнопка 'Закрыть (окно гильдии)'")
    $Result =  INT(STRCUT($Result, 1, 1))
    IF($Result  = 1)
-      WriteCoord("Button_Close", "Button_Close")
+      WriteCoord("Button_Close", "Button_Close", "Button_Close")
    END_IF
    IF($Result  = 2)
-      WriteCoord("Icon_CloseWide", "Button_CloseWide")
+      WriteCoord("Icon_CloseWide", "Icon_CloseWide", "Button_CloseWide")
    END_IF
 END_SUB
 
@@ -93,15 +35,15 @@ SUB (CoordErrands)
    $Result = RADIOBOX("Какие координаты вы хотите изменить?", "1 - иконка 'Задания'", "2 - Вкладка 'Обычные'", "3 - Кнопка 'Начать'")
    $Result =  INT(STRCUT($Result, 1, 1))
    IF($Result  = 1)
-      WriteCoord("Icon_Errand", "Errand")
+      WriteCoord("Icon_Errand", "Icon_Errand", "Errand")
    END_IF
    
    IF($Result  = 2)
-      WriteCoord("Icon_UsualErrand", "Errand")
+      WriteCoord("Icon_UsualErrand", "Icon_UsualErrand", "Errand")
    END_IF
    
    IF($Result  = 3)
-      WriteCoord("Button_ErrandStart", "Errand")
+      WriteCoord("Button_ErrandStart", "Button_ErrandStart", "Errand")
    END_IF
    
    //$dialog = DIALOGBOX("Задать ещё одну кнопку?", 1, 2)
@@ -114,10 +56,10 @@ SUB (CoordTreasure)
    $Result = RADIOBOX("Какие координаты вы хотите изменить?", "1 - иконка 'Сокровище'", "2 - кнопка 'Забрать/Закрыть'")
    $Result =  INT(STRCUT($Result, 1, 1))
    IF($Result  = 1)
-      WriteCoord("Icon_Treasure", "Treasure")
+      WriteCoord("Icon_Treasure", "Icon_Treasure", "Treasure")
    END_IF
    IF($Result  = 2)
-      WriteCoord("Button_Claim", "Treasure")
+      WriteCoord("Button_Claim", "Button_Claim", "Treasure")
    END_IF
 END_SUB
 
@@ -127,28 +69,101 @@ SUB (CoordMainMenu)
    $Result =  INT(STRCUT($Result, 1, 1))
    SWITCH($Result)
    CASE(1)
-      WriteCoord("Icon_MainMenu1", "MainMenu")
+      WriteCoord("Icon_MainMenu1", "Icon_MainMenu1", "MainMenu")
       
    CASE(2)
-      WriteCoord("Icon_Guild", "MainMenu")
-   
-	 CASE(3)
-      WriteCoord("Icon_Watchman", "MainMenu")
-   
-   CASE(4)
-      WriteCoord("Icon_MainMenu2", "MainMenu")
+      WriteCoord("Icon_Guild", "Icon_Guild", "MainMenu")
       
-	 CASE(5)
-      WriteCoord("Icon_Workshop", "MainMenu")
+   CASE(3)
+      WriteCoord("Icon_Watchman", "Icon_Watchman", "MainMenu")
+      
+   CASE(4)
+      WriteCoord("Icon_MainMenu2", "Icon_MainMenu2", "MainMenu")
+      
+   CASE(5)
+      WriteCoord("Icon_Workshop", "Icon_Workshop", "MainMenu")
       
    DEFAULT
       // случай по умолчанию
       
    END_SWITCH
    
+END_SUB
+
+ SUB (CoordGuild)
+
+   $Result = RADIOBOX("Какие координаты вы хотите изменить?", "1 - Вкладка 'Помочь членам ордена'", "2 - Кнопка 'Помочь всем'")
+   $Result =  INT(STRCUT($Result, 1, 1))
+   IF($Result  = 1)
+      WriteCoord("Icon_HelpOrderMembers", "Icon_HelpOrderMembers", "Errand")
+   END_IF
+   
+   IF($Result  = 2)
+      WriteCoord("Button_HelpAll", "Button_HelpAll", "Errand")
+   END_IF
+   
  END_SUB
 
-SUB (ExecuteSelected, $pResult)
+
+SUB (CoordResources)
+   
+   $Result = RADIOBOX("Какие координаты вы хотите изменить?", "1 - Координаты меню выбора", "2 - Пункт меню 'еда'", "3 - Пункт меню 'камень'", "4 - Пункт меню 'дерево'", "5 - Пункт меню 'железо'", "6 - Пункт меню 'Серебро'", "7 - Кнопка 'Собрать/заватить'", "8 - Поле ввода кол-ва войск", "9 - Кнопка 'Отправить'")
+   $Result =  INT(STRCUT($Result, 1, 1))
+   SWITCH($Result)
+   CASE(1)
+      WriteCoord("Icon_ResourcesChooseMenu", "Icon_ResourcesChooseMenu", "MainMenu")
+      
+   CASE(2)
+      WriteCoord("ResourcesChoose", "HuntersSettlement", "MainMenu")
+      
+   CASE(3)
+      WriteCoord("ResourcesChoose", "StonePit", "MainMenu")
+      
+   CASE(4)
+      WriteCoord("ResourcesChoose", "LoggersCamp", "MainMenu")
+      
+   CASE(5)
+      WriteCoord("ResourcesChoose", "OreMine", "MainMenu")
+      
+   CASE(6)
+      WriteCoord("ResourcesChoose", "Fief", "MainMenu")
+      
+   CASE(7)
+      WriteCoord("Button_Capture", "Button_Capture", "MainMenu")
+      
+   CASE(8)
+      WriteCoord("Field_Army", "Field_Army", "MainMenu")
+      
+   CASE(9)
+      WriteCoord("Button_Send", "Button_Send", "MainMenu")
+      
+   DEFAULT
+      // случай по умолчанию
+      
+   END_SWITCH
+   
+END_SUB
+
+SUB (CoordWorkshop)
+   
+   $Result = RADIOBOX("Какие координаты вы хотите изменить?", "1 - Кнопка 'Плитки'", "2 - Иконка первого материала", "3 - Кнопка 'Соеденить'")
+   $Result =  INT(STRCUT($Result, 1, 1))
+   SWITCH($Result)
+   CASE(1)
+      WriteCoord("Button_Titles", "Button_Titles", "MainMenu")
+      
+   CASE(2)
+      WriteCoord("Icon_Material", "Icon_Material", "MainMenu")
+      
+   CASE(3)
+      WriteCoord("Button_Combine", "Button_Combine", "MainMenu")
+      
+   DEFAULT
+      // случай по умолчанию
+      
+   END_SWITCH
+   
+END_SUBSUB (ExecuteSelected, $pResult)
    $dialog = 1
    WHILE($dialog = 1)
       
@@ -162,16 +177,24 @@ SUB (ExecuteSelected, $pResult)
          
       CASE(3)
          CoordTreasure()
-      
-			CASE(4)
+         
+      CASE(4)
          CoordMainMenu()
-        
+         
+      CASE(5)
+         CoordGuild()
+         
+      CASE(6)
+         CoordResources()
+      
+      CASE(7)
+         CoordWorkshop()
+         
+         
       DEFAULT
          // случай по умолчанию
          
       END_SWITCH
-      LOGWRITE ($pResult)
-      
       $dialog = DIALOGBOX("Задать ещё одну кнопку?", 1, 2)
    END_CYC
    
