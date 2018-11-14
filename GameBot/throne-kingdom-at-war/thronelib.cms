@@ -1,86 +1,89 @@
 //библиотека стандартных решений для игры "Throne"
 
 #logfile
+$filename = "config.ini"
 $coefficient = 1
 
-$Button_Close_X = INIREAD("config.ini", "Button_Close_X","Button_Close")
-$Button_Close_Y = INIREAD("config.ini", "Button_Close_Y","Button_Close")
+$right_hand_mouse = INIREAD($filename, "right_hand_mouse")
 
-$Button_CloseWide_X = INIREAD("config.ini", "Icon_CloseWide_X", "Button_CloseWide")
-$Button_CloseWide_Y = INIREAD("config.ini", "Icon_CloseWide_Y", "Button_CloseWide")
+$Button_Close_X = INIREAD($filename, "Button_Close_X","Button_Close")
+$Button_Close_Y = INIREAD($filename, "Button_Close_Y","Button_Close")
+
+$Button_CloseWide_X = INIREAD($filename, "Icon_CloseWide_X", "Button_CloseWide")
+$Button_CloseWide_Y = INIREAD($filename, "Icon_CloseWide_Y", "Button_CloseWide")
 
 //секция задания
-$Icon_Errand_X = INIREAD("config.ini", "Icon_Errand_X", "Errand")
-$Icon_Errand_Y = INIREAD("config.ini", "Icon_Errand_Y", "Errand")
+$Icon_Errand_X = INIREAD($filename, "Icon_Errand_X", "Errand")
+$Icon_Errand_Y = INIREAD($filename, "Icon_Errand_Y", "Errand")
 
-$Icon_UsualErrand_X = INIREAD("config.ini", "Icon_UsualErrand_X", "Errand")
-$Icon_UsualErrand_Y = INIREAD("config.ini", "Icon_UsualErrand_Y", "Errand")
+$Icon_UsualErrand_X = INIREAD($filename, "Icon_UsualErrand_X", "Errand")
+$Icon_UsualErrand_Y = INIREAD($filename, "Icon_UsualErrand_Y", "Errand")
 
-$DeltaErrandX = INIREAD("config.ini", "DeltaErrandX", "Errand")
+$DeltaErrandX = INIREAD($filename, "DeltaErrandX", "Errand")
 
-$Button_ErrandStart_X = INIREAD("config.ini", "Button_ErrandStart_X", "Errand")
-$Button_ErrandStart_Y = INIREAD("config.ini", "Button_ErrandStart_Y", "Errand")
+$Button_ErrandStart_X = INIREAD($filename, "Button_ErrandStart_X", "Errand")
+$Button_ErrandStart_Y = INIREAD($filename, "Button_ErrandStart_Y", "Errand")
 
 //секция сокровище
-$Icon_Treasure_X = INIREAD("config.ini", "Icon_Treasure_X", "Treasure")
-$Icon_Treasure_Y = INIREAD("config.ini", "Icon_Treasure_Y", "Treasure")
+$Icon_Treasure_X = INIREAD($filename, "Icon_Treasure_X", "Treasure")
+$Icon_Treasure_Y = INIREAD($filename, "Icon_Treasure_Y", "Treasure")
 
-$Button_Claim_X = INIREAD("config.ini", "Button_Claim_X", "Treasure")
-$Button_Claim_Y = INIREAD("config.ini", "Button_Claim_Y", "Treasure")
+$Button_Claim_X = INIREAD($filename, "Button_Claim_X", "Treasure")
+$Button_Claim_Y = INIREAD($filename, "Button_Claim_Y", "Treasure")
 
 //секция основное меню
-$Icon_MainMenu1_X = INIREAD("config.ini", "Icon_MainMenu1_X", "MainMenu")
-$Icon_MainMenu1_Y = INIREAD("config.ini", "Icon_MainMenu1_Y", "MainMenu")
-$Icon_MainMenu2_X = INIREAD("config.ini", "Icon_MainMenu2_X", "MainMenu")
+$Icon_MainMenu1_X = INIREAD($filename, "Icon_MainMenu1_X", "MainMenu")
+$Icon_MainMenu1_Y = INIREAD($filename, "Icon_MainMenu1_Y", "MainMenu")
+$Icon_MainMenu2_X = INIREAD($filename, "Icon_MainMenu2_X", "MainMenu")
 
-$Icon_Guild_X = INIREAD("config.ini", "Icon_Guild_X", "MainMenu")
-$Icon_Guild_Y = INIREAD("config.ini", "Icon_Guild_Y", "MainMenu")
+$Icon_Guild_X = INIREAD($filename, "Icon_Guild_X", "MainMenu")
+$Icon_Guild_Y = INIREAD($filename, "Icon_Guild_Y", "MainMenu")
 
-$Icon_Watchman_X = INIREAD("config.ini", "Icon_Watchman_X", "MainMenu")
-$Icon_Watchman_Y = INIREAD("config.ini", "Icon_Watchman_Y", "MainMenu")
+$Icon_Watchman_X = INIREAD($filename, "Icon_Watchman_X", "MainMenu")
+$Icon_Watchman_Y = INIREAD($filename, "Icon_Watchman_Y", "MainMenu")
 
-$Icon_Workshop_X = INIREAD("config.ini", "Icon_Workshop_X", "MainMenu")
-$Icon_Workshop_Y = INIREAD("config.ini", "Icon_Workshop_Y", "MainMenu")
+$Icon_Workshop_X = INIREAD($filename, "Icon_Workshop_X", "MainMenu")
+$Icon_Workshop_Y = INIREAD($filename, "Icon_Workshop_Y", "MainMenu")
 
 //секция гильдия
-$Icon_HelpOrderMembers_X = INIREAD("config.ini", "Icon_HelpOrderMembers_X", "Guild")
-$Icon_HelpOrderMembers_Y = INIREAD("config.ini", "Icon_HelpOrderMembers_Y", "Guild")
+$Icon_HelpOrderMembers_X = INIREAD($filename, "Icon_HelpOrderMembers_X", "Guild")
+$Icon_HelpOrderMembers_Y = INIREAD($filename, "Icon_HelpOrderMembers_Y", "Guild")
 
-$Button_HelpAll_X = INIREAD("config.ini", "Button_HelpAll_X", "Guild")
-$Button_HelpAll_Y = INIREAD("config.ini", "Button_HelpAll_Y", "Guild")
+$Button_HelpAll_X = INIREAD($filename, "Button_HelpAll_X", "Guild")
+$Button_HelpAll_Y = INIREAD($filename, "Button_HelpAll_Y", "Guild")
 
 //секция сбор ресурсов
-$Icon_ResourcesChooseMenu_X = INIREAD("config.ini", "Icon_ResourcesChooseMenu_X", "Resources")
-$Icon_ResourcesChooseMenu_Y = INIREAD("config.ini", "Icon_ResourcesChooseMenu_Y", "Resources")
+$Icon_ResourcesChooseMenu_X = INIREAD($filename, "Icon_ResourcesChooseMenu_X", "Resources")
+$Icon_ResourcesChooseMenu_Y = INIREAD($filename, "Icon_ResourcesChooseMenu_Y", "Resources")
 
-$ResourcesChoose_X = INIREAD("config.ini", "ResourcesChoose_X", "Resources")
+$ResourcesChoose_X = INIREAD($filename, "ResourcesChoose_X", "Resources")
 
-$HuntersSettlement_Y = INIREAD("config.ini", "HuntersSettlement_Y", "Resources")
-$StonePit_Y          = INIREAD("config.ini", "StonePit_Y",          "Resources")
-$LoggersCamp_Y       = INIREAD("config.ini", "LoggersCamp_Y",       "Resources")
-$OreMine_Y           = INIREAD("config.ini", "OreMine_Y",           "Resources")
-$Fief_Y              = INIREAD("config.ini", "Fief_Y",              "Resources")
+$HuntersSettlement_Y = INIREAD($filename, "HuntersSettlement_Y", "Resources")
+$StonePit_Y          = INIREAD($filename, "StonePit_Y",          "Resources")
+$LoggersCamp_Y       = INIREAD($filename, "LoggersCamp_Y",       "Resources")
+$OreMine_Y           = INIREAD($filename, "OreMine_Y",           "Resources")
+$Fief_Y              = INIREAD($filename, "Fief_Y",              "Resources")
 
-$DeltaResourcesY = INIREAD("config.ini", "DeltaResourcesY", "Resources")
+$DeltaResourcesY = INIREAD($filename, "DeltaResourcesY", "Resources")
 
-$Button_Capture_X = INIREAD("config.ini", "Button_Capture_X", "Resources")
-$Button_Capture_Y = INIREAD("config.ini", "Button_Capture_Y", "Resources")
+$Button_Capture_X = INIREAD($filename, "Button_Capture_X", "Resources")
+$Button_Capture_Y = INIREAD($filename, "Button_Capture_Y", "Resources")
 
-$Field_Army_X = INIREAD("config.ini", "Field_Army_X", "Resources")
-$Field_Army_Y = INIREAD("config.ini", "Field_Army_Y", "Resources")
+$Field_Army_X = INIREAD($filename, "Field_Army_X", "Resources")
+$Field_Army_Y = INIREAD($filename, "Field_Army_Y", "Resources")
 
-$Button_Send_X = INIREAD("config.ini", "Button_Send_X", "Resources")
-$Button_Send_Y = INIREAD("config.ini", "Button_Send_Y", "Resources")
+$Button_Send_X = INIREAD($filename, "Button_Send_X", "Resources")
+$Button_Send_Y = INIREAD($filename, "Button_Send_Y", "Resources")
 
 //секция Workshop
-$Button_Titles_X = INIREAD("config.ini", "Button_Titles_X", "Workshop")
-$Button_Titles_Y = INIREAD("config.ini", "Button_Titles_Y", "Workshop")
+$Button_Titles_X = INIREAD($filename, "Button_Titles_X", "Workshop")
+$Button_Titles_Y = INIREAD($filename, "Button_Titles_Y", "Workshop")
 
-$Icon_Material_X = INIREAD("config.ini", "Icon_Material_X", "Workshop")
-$Icon_Material_Y = INIREAD("config.ini", "Icon_Material_Y", "Workshop")
+$Icon_Material_X = INIREAD($filename, "Icon_Material_X", "Workshop")
+$Icon_Material_Y = INIREAD($filename, "Icon_Material_Y", "Workshop")
 
-$Button_Combine_X = INIREAD("config.ini", "Button_Combine_X", "Workshop")
-$Button_Combine_Y = INIREAD("config.ini", "Button_Combine_Y", "Workshop")
+$Button_Combine_X = INIREAD($filename, "Button_Combine_X", "Workshop")
+$Button_Combine_Y = INIREAD($filename, "Button_Combine_Y", "Workshop")
 
 
 //$lX , $lY - координаты точки
@@ -92,31 +95,27 @@ sub(MoveAndClick, $lX , $lY)
    move($lX,$lY)
    waitms($DelayR)
    
-   lDown($lX,$lY)
-   waitms($DelayR)
-   
-   lUp($lX,$lY)
-   
+   IF($right_hand_mouse = 1)
+      lDown($lX,$lY)
+      waitms($DelayR)
+      
+      lUp($lX,$lY)
+   ELSE  
+      rDown($lX,$lY)
+      waitms($DelayR)
+      
+      rUp($lX,$lY)
+   END_IF
+  
    //спец. задержка после нажатия. чтобы сервер обработал клик
    //иначе много кликов пройдёт впустую
    waitms($LongDelayR)
    
 end_sub
 
-//квесты - это очень просто алгоритм
-//т.к. все элементы на своём мести и доп. условий мало - сделаем всё на координатах
-//один раз прописал - работать будет всегда и быстро
-SUB(DoErrandsOnPage) // подпрограмма
-   
-   FOR($a = 0, $a < 15)
-      MoveAndClick($Button_ErrandStart_X, $Button_ErrandStart_Y)
-      MoveAndClick($Button_ErrandStart_X, $Button_ErrandStart_Y)
-   END_CYC
-   
-END_SUB
-
 SUB(DoErrands)
    
+   $ErrandsCount = INIREAD($filename, "ErrandsCount", "Errand")
    //открываем окно выполнения заданий
    MoveAndClick($Icon_Errand_X, $Icon_Errand_Y)
    
@@ -124,8 +123,13 @@ SUB(DoErrands)
    FOR($kv = 0, $kv < 3)
       $lx = $Icon_UsualErrand_X + $kv * $DeltaErrandX
       MoveAndClick($lx, $Icon_UsualErrand_Y)
-      DoErrandsOnPage()
-   END_CYC
+      
+			FOR($a = 0, $a < $ErrandsCount)
+         MoveAndClick($Button_ErrandStart_X, $Button_ErrandStart_Y)
+         MoveAndClick($Button_ErrandStart_X, $Button_ErrandStart_Y)
+      END_CYC
+   
+	 END_CYC
    
    MoveAndClick($Button_Close_X, $Button_Close_Y)
    
@@ -148,10 +152,10 @@ SUB(HelpOrderMembers)
    MoveAndClick($Icon_MainMenu1_X,        $Icon_MainMenu1_Y)
    MoveAndClick($Icon_Guild_X,            $Icon_Guild_Y)
    
-	 MoveAndClick($Icon_HelpOrderMembers_X, $Icon_HelpOrderMembers_Y)
+   MoveAndClick($Icon_HelpOrderMembers_X, $Icon_HelpOrderMembers_Y)
    MoveAndClick($Button_HelpAll_X,        $Button_HelpAll_Y)
    
-	 MoveAndClick($Button_Close_X,          $Button_Close_Y)
+   MoveAndClick($Button_Close_X,          $Button_Close_Y)
    MoveAndClick($Button_CloseWide_X,      $Button_CloseWide_Y)
    
 END_SUB
@@ -214,7 +218,7 @@ SUB(TakeResource, $pResourceType, $pNumberOfSoldiers, $pSdvig, $pSecondArmy)
    ChooseResource($pResourceType)
    
    MoveAndClick($Button_Capture_X, $Button_Capture_Y + $pSdvig * $DeltaResourcesY)
-   MoveAndClick($Field_Army_X,$Field_Army_Y)
+   MoveAndClick($Field_Army_X, $Field_Army_Y)
    
    KEYSTRING($pNumberOfSoldiers*$coefficient)
    
