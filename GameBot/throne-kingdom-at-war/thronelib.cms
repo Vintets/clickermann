@@ -126,7 +126,7 @@ SUB(OpenWatchman)
    
 END_SUB
 
-SUB(ChooseResource, $ResourceTypel)
+SUB(ChooseResource, $ResourceTypel, $coefficient)
    
    $Icon_ChooseMenu_X = 820
    $Icon_ChooseMenu_Y = 480
@@ -146,6 +146,7 @@ SUB(ChooseResource, $ResourceTypel)
    $Fief_X = 750
    $Fief_Y = 685
    
+   $coefficient = 1
    //вызвали подменю
    MoveAndClick($Icon_ChooseMenu_X,$Icon_ChooseMenu_Y)
    
@@ -155,28 +156,34 @@ SUB(ChooseResource, $ResourceTypel)
       
       //выбрали еду
       MoveAndClick($HuntersSettlement_X,$HuntersSettlement_Y)
+      $coefficient = 1
       
    CASE(2)
       
       //выбрали камень
       MoveAndClick($StonePit_X, $StonePit_Y)
+      $coefficient = 0.75
       
    CASE(3)
       
       //выбрали дерево
       MoveAndClick($LoggersCamp_X,$LoggersCamp_Y)
+      $coefficient = 0.75
       
    CASE(4)
       //выбрали железо
       MoveAndClick($OreMine_X, $OreMine_Y)
+      $coefficient = 0.6
       
    CASE(5)
       //выбрали серебро
       MoveAndClick($Fief_X,$Fief_Y)
+      $coefficient = 0.5
       
    DEFAULT
       //выбрали еду
       MoveAndClick($HuntersSettlement_X,$HuntersSettlement_Y)
+      $coefficient = 1
       
    END_SWITCH
    
@@ -203,19 +210,21 @@ SUB(TakeResource, $ResourceType, $NumberOfSoldiers, $Sdvig, $SecondArmy)
    
    $Button_Send_X = 1169
    $Button_Send_Y = 910
-   
+	 
+	 $coefficient = 1
+	 
    OpenWatchman()
-   ChooseResource($ResourceType)
+   ChooseResource($ResourceType, $coefficient)
    
    MoveAndClick($Button_Capture_X, $Button_Capture_Y + $Sdvig * $DeltaY)  // 0
    MoveAndClick($Field_Army_X,$Field_Army_Y)  // 0
    
-   KEYSTRING($NumberOfSoldiers)
+   KEYSTRING($NumberOfSoldiers*$coefficient)
    
    IF($SecondArmy = 2)
       
       MoveAndClick($Field_Army_X,$Field_Army_Y + 100)  // 0
-      KEYSTRING($NumberOfSoldiers)
+      KEYSTRING($NumberOfSoldiers*$coefficient)
       
    END_IF
    
@@ -280,4 +289,3 @@ SUB(CreateMaterial, $NumberofMaterial)
    MoveAndClick($Icon_CloseWide_X, $Icon_CloseWide_Y)
    
 END_SUB
-

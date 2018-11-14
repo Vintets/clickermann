@@ -40,12 +40,12 @@ IF(ISKEYDOWN(#ALT)=1)
       TakeResource(1, $NumberofSolder, 1, $ArmyTypes)
       
       //2 на железо
-      TakeResource(2, $NumberofSolder*0.65, 0, $ArmyTypes)
-      TakeResource(2, $NumberofSolder*0.65, 1, $ArmyTypes)
+      TakeResource(2, $NumberofSolder, 0, $ArmyTypes)
+      TakeResource(2, $NumberofSolder, 1, $ArmyTypes)
       
       //2 на серебро
-      TakeResource(3, $NumberofSolder*0.75, 0, $ArmyTypes)
-      TakeResource(5, $NumberofSolder*0.5, 1, $ArmyTypes)
+      TakeResource(3, $NumberofSolder, 0, $ArmyTypes)
+      TakeResource(5, $NumberofSolder, 1, $ArmyTypes)
       
    END_IF
    
