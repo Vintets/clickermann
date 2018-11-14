@@ -1,7 +1,7 @@
 #include "thronelib.cms"
 #logfile
 //основной алгоритм
-LOGCLEAR
+//LOGCLEAR
 
 
 // поток
@@ -11,22 +11,41 @@ LOGCLEAR
 //  waitms(5*560*1000) // задержка для разгрузки CPU
 //END_THREAD
 
-//setThread(thr_name, 1)
-IF(ISKEYDOWN(#ALT)=1)
+SUB (ExecuteSelected, $Numner)
+   //setThread(thr_name, 1)
    
-   IF(ISKEYDOWN(#1)=1)
-      DoErrands()
-   END_IF
-   
-   IF(ISKEYDOWN(#2)=1)
-      TakeTreasure()
-   END_IF
-   
-   IF(ISKEYDOWN(#3)=1)
+   //нажать руку помощи
+   IF($Numner = 1)
+      
       HelpOrderMembers()
+      
    END_IF
    
-   IF(ISKEYDOWN(#4)=1)
+   //2 собрать сокровища
+   IF($Numner = 2)
+      
+      TakeTreasure()
+      
+   END_IF
+   
+   
+   //выполнить задания
+   IF($Numner = 3)
+      
+      DoErrands()
+      
+   END_IF
+   
+   IF($Numner = 4)
+      
+      move(945, 707)
+      $NumberofMaterial = INPUTBOX("Cколько материалов вы хотите создать?", "5", 20)
+      
+      CreateMaterial($NumberofMaterial)
+      
+   END_IF
+   
+   IF($Numner = 5)
       
       //позволяет выбрать сколько видов войск вы хотите отправить на ресурс
       $ArmyTypes = RADIOBOX("Сколько видов войск вы хотите послать на ресурс?", "1", "2")
@@ -45,20 +64,12 @@ IF(ISKEYDOWN(#ALT)=1)
       
       //2 на серебро
       TakeResource(3, $NumberofSolder, 0, $ArmyTypes)
-      TakeResource(5, $NumberofSolder, 1, $ArmyTypes)
+      TakeResource(3, $NumberofSolder, 1, $ArmyTypes)
       
    END_IF
    
-   IF(ISKEYDOWN(#5)=1)
-      
-      
-      move(945, 707)
-      $NumberofMaterial = INPUTBOX("Cколько материалов вы хотите создать?", "5", 20)
-      
-      CreateMaterial($NumberofMaterial)
-   END_IF
    
-   IF(ISKEYDOWN(#6)=1)
+   IF($Numner = 6)
       
       //послать на 1 ресурс
       $ResourceType = RADIOBOX("Какой тип ресурса вы хотите собрать?", "1 - еда", "2 - камень", "3 - дерево", "4 - железо", "5 - серебро")
@@ -68,7 +79,9 @@ IF(ISKEYDOWN(#ALT)=1)
       $ArmyTypes =  INT($ArmyTypes)
       
       $NumberofSolder = INPUTBOX("Cколько материалов вы хотите создать?", "5000", 20)
-      $NumberofSolder =  INT($NumberofSolder)
+      LOGWRITE ($NumberofSolder)
+      
+      //$NumberofSolder =  INT($NumberofSolder)
       
       $String = RADIOBOX("1я или 2я строка в выборе ресурса?", "1", "2")
       $String =  INT($String) - 1
@@ -78,8 +91,47 @@ IF(ISKEYDOWN(#ALT)=1)
       
    END_IF
    
-   WAITMS(50)
    
+END_SUB
+
+IF(ISKEYDOWN(#ALT)=1)
+   
+   IF(ISKEYDOWN(#1) = 1)
+      
+      $Result = RADIOBOX("Что вы хотите сделать?", "1 - Нажать руку помощи", "2 - Забрать сокровище", "3 - Выполнить задания", "4 - Создать материалы", "5 - (ТЕСТ) Сбор ближайших ресурсов", "6 - (ТЕСТ) Сбор одного ресурса")
+      $Result =  INT(STRCUT($Result, 1, 1))
+      IF($Result  ! 0)
+         ExecuteSelected($Result)
+      END_IF
+      
+      //	WAITMS(50)
+      
+   END_IF
+   
+   IF(ISKEYDOWN(#2) = 1)
+      ExecuteSelected(1)
+   END_IF
+    
+   IF(ISKEYDOWN(#3) = 1)
+      ExecuteSelected(2)
+   END_IF
+  
+	 IF(ISKEYDOWN(#4) = 1)
+      ExecuteSelected(3)
+   END_IF
+ 
+	 IF(ISKEYDOWN(#5) = 1)
+      ExecuteSelected(4)
+   END_IF
+ 
+	 IF(ISKEYDOWN(#6) = 1)
+      ExecuteSelected(5)
+   END_IF
+ 
+	 IF(ISKEYDOWN(#7) = 1)
+      ExecuteSelected(6)
+   END_IF
+	 	   
 END_IF
 
 WAITMS(20)

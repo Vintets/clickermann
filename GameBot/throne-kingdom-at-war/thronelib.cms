@@ -1,4 +1,6 @@
 #logfile
+$coefficient = 1
+
 //координаты кнопки "Закрыть"
 $Icon_Close_X = 1214
 $Icon_Close_Y = 350
@@ -126,7 +128,7 @@ SUB(OpenWatchman)
    
 END_SUB
 
-SUB(ChooseResource, $ResourceTypel, $coefficient)
+SUB(ChooseResource, $ResourceTypel)
    
    $Icon_ChooseMenu_X = 820
    $Icon_ChooseMenu_Y = 480
@@ -146,7 +148,6 @@ SUB(ChooseResource, $ResourceTypel, $coefficient)
    $Fief_X = 750
    $Fief_Y = 685
    
-   $coefficient = 1
    //вызвали подменю
    MoveAndClick($Icon_ChooseMenu_X,$Icon_ChooseMenu_Y)
    
@@ -189,7 +190,7 @@ SUB(ChooseResource, $ResourceTypel, $coefficient)
    
 END_SUB
 
-SUB(TakeResource, $ResourceType, $NumberOfSoldiers, $Sdvig, $SecondArmy)
+SUB(TakeResource, $pResourceType, $pNumberOfSoldiers, $pSdvig, $pSecondArmy)
    
    //Координаты области экрана по которой будем проверять, что ресурс  занят
    $Field_CheckScreen_Xstart = 1107
@@ -210,21 +211,22 @@ SUB(TakeResource, $ResourceType, $NumberOfSoldiers, $Sdvig, $SecondArmy)
    
    $Button_Send_X = 1169
    $Button_Send_Y = 910
-	 
-	 $coefficient = 1
-	 
-   OpenWatchman()
-   ChooseResource($ResourceType, $coefficient)
    
-   MoveAndClick($Button_Capture_X, $Button_Capture_Y + $Sdvig * $DeltaY)  // 0
+   OpenWatchman()
+   ChooseResource($pResourceType)
+   
+   MoveAndClick($Button_Capture_X, $Button_Capture_Y + $pSdvig * $DeltaY)  // 0
    MoveAndClick($Field_Army_X,$Field_Army_Y)  // 0
    
-   KEYSTRING($NumberOfSoldiers*$coefficient)
+   LOGWRITE ($pNumberofSolder)
+   LOGWRITE ($lcoefficient)
+   LOGWRITE($pNumberOfSoldiers*$coefficient)
+   KEYSTRING($pNumberOfSoldiers*$coefficient)
    
-   IF($SecondArmy = 2)
+   IF($pSecondArmy = 2)
       
       MoveAndClick($Field_Army_X,$Field_Army_Y + 100)  // 0
-      KEYSTRING($NumberOfSoldiers*$coefficient)
+      KEYSTRING($pNumberOfSoldiers*$coefficient)
       
    END_IF
    
