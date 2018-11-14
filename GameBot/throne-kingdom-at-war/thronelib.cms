@@ -31,6 +31,7 @@ $Button_Claim_Y = INIREAD("config.ini", "Button_Claim_Y", "Treasure")
 //секция основное меню
 $Icon_MainMenu1_X = INIREAD("config.ini", "Icon_MainMenu1_X", "MainMenu")
 $Icon_MainMenu1_Y = INIREAD("config.ini", "Icon_MainMenu1_Y", "MainMenu")
+$Icon_MainMenu2_X = INIREAD("config.ini", "Icon_MainMenu2_X", "MainMenu")
 
 $Icon_Guild_X = INIREAD("config.ini", "Icon_Guild_X", "MainMenu")
 $Icon_Guild_Y = INIREAD("config.ini", "Icon_Guild_Y", "MainMenu")
@@ -38,12 +39,48 @@ $Icon_Guild_Y = INIREAD("config.ini", "Icon_Guild_Y", "MainMenu")
 $Icon_Watchman_X = INIREAD("config.ini", "Icon_Watchman_X", "MainMenu")
 $Icon_Watchman_Y = INIREAD("config.ini", "Icon_Watchman_Y", "MainMenu")
 
+$Icon_Workshop_X = INIREAD("config.ini", "Icon_Watchman_X", "MainMenu")
+$Icon_Workshop_Y = INIREAD("config.ini", "Icon_Watchman_Y", "MainMenu")
+
 //секция гильдия
 $Icon_HelpOrderMembers_X = INIREAD("config.ini", "Icon_HelpOrderMembers_X", "Guild")
 $Icon_HelpOrderMembers_Y = INIREAD("config.ini", "Icon_HelpOrderMembers_Y", "Guild")
 
 $Button_HelpAll_X = INIREAD("config.ini", "Button_HelpAll_X", "Guild")
 $Button_HelpAll_Y = INIREAD("config.ini", "Button_HelpAll_Y", "Guild")
+
+//секция сбор ресурсов
+$Icon_ResourcesChooseMenu_X = INIREAD("config.ini", "Icon_ResourcesChooseMenu_X", "Resources")
+$Icon_ResourcesChooseMenu_Y = INIREAD("config.ini", "Icon_ResourcesChooseMenu_Y", "Resources")
+
+$ResourcesChoose_X = INIREAD("config.ini", "ResourcesChoose_X", "Resources")
+
+$HuntersSettlement_Y = INIREAD("config.ini", "HuntersSettlement_Y", "Resources")
+$StonePit_Y          = INIREAD("config.ini", "StonePit_Y",          "Resources")
+$LoggersCamp_Y       = INIREAD("config.ini", "LoggersCamp_Y",       "Resources")
+$OreMine_Y           = INIREAD("config.ini", "OreMine_Y",           "Resources")
+$Fief_Y              = INIREAD("config.ini", "Fief_Y",              "Resources")
+
+$DeltaResourcesY = INIREAD("config.ini", "DeltaResourcesY", "Resources")
+
+$Button_Capture_X = INIREAD("config.ini", "Button_Capture_X", "Resources")
+$Button_Capture_Y = INIREAD("config.ini", "Button_Capture_Y", "Resources")
+
+$Field_Army_X = INIREAD("config.ini", "Field_Army_X", "Resources")
+$Field_Army_Y = INIREAD("config.ini", "Field_Army_Y", "Resources")
+
+$Button_Send_X = INIREAD("config.ini", "Button_Send_X", "Resources")
+$Button_Send_Y = INIREAD("config.ini", "Button_Send_Y", "Resources")
+
+//секция Workshop
+$Button_Titles_X = INIREAD("config.ini", "Button_Titles_X", "Workshop")
+$Button_Titles_Y = INIREAD("config.ini", "Button_Titles_Y", "Workshop")
+
+$Icon_Material_X = INIREAD("config.ini", "Icon_Material_X", "Workshop")
+$Icon_Material_Y = INIREAD("config.ini", "Icon_Material_Y", "Workshop")
+
+$Button_Combine_X = INIREAD("config.ini", "Button_Combine_X", "Workshop")
+$Button_Combine_Y = INIREAD("config.ini", "Button_Combine_Y", "Workshop")
 
 
 //$lX , $lY - координаты точки
@@ -108,12 +145,14 @@ END_SUB
 
 SUB(HelpOrderMembers)
    
-   MoveAndClick($Icon_MainMenu1_X, $Icon_MainMenu1_Y)
-   MoveAndClick($Icon_Guild_X, $Icon_Guild_Y)
-   MoveAndClick($Icon_HelpOrderMembers_X, $Icon_HelpOrderMembers_Y)
-   MoveAndClick($Button_HelpAll_X, $Button_HelpAll_Y)
-   MoveAndClick($Button_Close_X, $Button_Close_Y)
-   MoveAndClick($Button_CloseWide_X, $Button_CloseWide_Y)
+   MoveAndClick($Icon_MainMenu1_X,        $Icon_MainMenu1_Y)
+   MoveAndClick($Icon_Guild_X,            $Icon_Guild_Y)
+   
+	 MoveAndClick($Icon_HelpOrderMembers_X, $Icon_HelpOrderMembers_Y)
+   MoveAndClick($Button_HelpAll_X,        $Button_HelpAll_Y)
+   
+	 MoveAndClick($Button_Close_X,          $Button_Close_Y)
+   MoveAndClick($Button_CloseWide_X,      $Button_CloseWide_Y)
    
 END_SUB
 
@@ -121,67 +160,48 @@ END_SUB
 SUB(OpenWatchman)
    
    MoveAndClick($Icon_MainMenu1_X, $Icon_MainMenu1_Y)
-   
-   MoveAndClick($Icon_Watchman_X, $Icon_Watchman_Y)
+   MoveAndClick($Icon_Watchman_X,  $Icon_Watchman_Y)
    
 END_SUB
 
 SUB(ChooseResource, $ResourceTypel)
    
-   $Icon_ChooseMenu_X = 820
-   $Icon_ChooseMenu_Y = 480
-   
-   $HuntersSettlement_X = 750
-   $HuntersSettlement_Y = 551
-   
-   $StonePit_X = 750
-   $StonePit_Y = 716
-   
-   $LoggersCamp_X = 750
-   $LoggersCamp_Y = 741
-   
-   $OreMine_X = 750
-   $OreMine_Y = 650
-   
-   $Fief_X = 750
-   $Fief_Y = 685
-   
    //вызвали подменю
-   MoveAndClick($Icon_ChooseMenu_X,$Icon_ChooseMenu_Y)
+   MoveAndClick($Icon_ResourcesChooseMenu_X,$Icon_ResourcesChooseMenu_Y)
    
    SWITCH($ResourceTypel)
       
    CASE(1)
       
       //выбрали еду
-      MoveAndClick($HuntersSettlement_X,$HuntersSettlement_Y)
+      MoveAndClick ($ResourcesChoose_X, $HuntersSettlement_Y)
       $coefficient = 1
       
    CASE(2)
       
       //выбрали камень
-      MoveAndClick($StonePit_X, $StonePit_Y)
-      $coefficient = 0.75
+      MoveAndClick ($ResourcesChoose_X, $StonePit_Y)
+      $coefficient = 0.85
       
    CASE(3)
       
       //выбрали дерево
-      MoveAndClick($LoggersCamp_X,$LoggersCamp_Y)
-      $coefficient = 0.75
+      MoveAndClick ($ResourcesChoose_X, $LoggersCamp_Y)
+      $coefficient = 0.85
       
    CASE(4)
       //выбрали железо
-      MoveAndClick($OreMine_X, $OreMine_Y)
+      MoveAndClick ($ResourcesChoose_X, $OreMine_Y)
       $coefficient = 0.6
       
    CASE(5)
       //выбрали серебро
-      MoveAndClick($Fief_X,$Fief_Y)
-      $coefficient = 0.5
+      MoveAndClick ($ResourcesChoose_X, $Fief_Y)
+      $coefficient = 0.4
       
    DEFAULT
       //выбрали еду
-      MoveAndClick($HuntersSettlement_X,$HuntersSettlement_Y)
+      MoveAndClick ($ResourcesChoose_X, $HuntersSettlement_Y)
       $coefficient = 1
       
    END_SWITCH
@@ -190,35 +210,12 @@ END_SUB
 
 SUB(TakeResource, $pResourceType, $pNumberOfSoldiers, $pSdvig, $pSecondArmy)
    
-   //Координаты области экрана по которой будем проверять, что ресурс  занят
-   $Field_CheckScreen_Xstart = 1107
-   $Field_CheckScreen_Ystart = 623
-   
-   $Field_CheckScreen_Xend = 1188
-   $Field_CheckScreen_Yend = 646
-   
-   $Color_ResourceNotClear = 1384091
-   
-   $DeltaY = 150
-   
-   $Button_Capture_X = 1262
-   $Button_Capture_Y = 620
-   
-   $Field_Army_X = 1163
-   $Field_Army_Y = 573
-   
-   $Button_Send_X = 1169
-   $Button_Send_Y = 910
-   
    OpenWatchman()
    ChooseResource($pResourceType)
    
-   MoveAndClick($Button_Capture_X, $Button_Capture_Y + $pSdvig * $DeltaY)
+   MoveAndClick($Button_Capture_X, $Button_Capture_Y + $pSdvig * $DeltaResourcesY)
    MoveAndClick($Field_Army_X,$Field_Army_Y)
    
-   LOGWRITE ($pNumberofSolder)
-   LOGWRITE ($lcoefficient)
-   LOGWRITE($pNumberOfSoldiers*$coefficient)
    KEYSTRING($pNumberOfSoldiers*$coefficient)
    
    IF($pSecondArmy = 2)
@@ -244,6 +241,15 @@ SUB(TakeResource, $pResourceType, $pNumberOfSoldiers, $pSdvig, $pSecondArmy)
    //ELSE
    // LOGWRITE ("Цвет не найден")
    
+   //Координаты области экрана по которой будем проверять, что ресурс  занят
+   //   $Field_CheckScreen_Xstart = 1107
+   //   $Field_CheckScreen_Ystart = 623
+   //
+   //   $Field_CheckScreen_Xend = 1188
+   //   $Field_CheckScreen_Yend = 646
+   //
+   //   $Color_ResourceNotClear = 1384091
+   
    
    // END_IF
    
@@ -252,15 +258,8 @@ END_SUB
 
 SUB(OpenWorkshop)
    
-   $Icon_MainMenu_X = 1435
-   $Icon_MainMenu_Y = 1056
-   
-   $Icon_Workshop_X = 1489
-   $Icon_Workshop_Y = 1103
-   
-   MoveAndClick($Icon_MainMenu_X, $Icon_MainMenu_Y)
-   
-   MoveAndClick($Icon_Workshop_X, $Icon_Workshop_Y)
+   MoveAndClick($Icon_MainMenu2_X, $Icon_MainMenu_Y)
+   MoveAndClick($Icon_Workshop_X,  $Icon_Workshop_Y)
    
 END_SUB
 
@@ -268,22 +267,13 @@ SUB(CreateMaterial, $NumberofMaterial)
    
    OpenWorkshop()
    
-   $Icon_Titles_X = 715
-   $Icon_Titles_Y = 910
-   
-   $Icon_Material_X = 893
-   $Icon_Material_Y = 530
-   
-   $Icon_Combine_X = 705
-   $Icon_Combine_Y = 843
-   
-   MoveAndClick($Icon_Titles_X, $Icon_Titles_Y)
+   MoveAndClick($Button_Titles_X, $Button_Titles_Y)
    
    $Num = INT($NumberofMaterial)
    
    FOR($a = 0,$a<$Num)
-      MoveAndClick($Icon_Material_X, $Icon_Material_Y)
-      MoveAndClick($Icon_Combine_X, $Icon_Combine_Y)
+      MoveAndClick($Icon_Material_X,  $Icon_Material_Y)
+      MoveAndClick($Button_Combine_X, $Button_Combine_Y)
    END_CYC
    
    MoveAndClick($Button_CloseWide_X, $Button_CloseWide_Y)
