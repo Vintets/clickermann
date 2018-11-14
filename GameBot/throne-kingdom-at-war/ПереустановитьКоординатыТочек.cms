@@ -8,10 +8,10 @@ SUB (WriteCoord, $Button_NameX, $Button_NameY, $section)
       WAITMS(10)
    END_CYC
    
-   $name = STRCONCAT($Button_Name, "_X")
+   $name = STRCONCAT($Button_NameX, "_X")
    INIWRITE($filename, $name, $_xmouse, $section)
    
-   $name = STRCONCAT($Button_Name, "_Y")
+   $name = STRCONCAT($Button_NameY, "_Y")
    INIWRITE($filename, $name, $_ymouse, $section)
    
 END_SUB
@@ -95,11 +95,11 @@ END_SUB
    $Result = RADIOBOX("Какие координаты вы хотите изменить?", "1 - Вкладка 'Помочь членам ордена'", "2 - Кнопка 'Помочь всем'")
    $Result =  INT(STRCUT($Result, 1, 1))
    IF($Result  = 1)
-      WriteCoord("Icon_HelpOrderMembers", "Icon_HelpOrderMembers", "Errand")
+      WriteCoord("Icon_HelpOrderMembers", "Icon_HelpOrderMembers", "Guild")
    END_IF
    
    IF($Result  = 2)
-      WriteCoord("Button_HelpAll", "Button_HelpAll", "Errand")
+      WriteCoord("Button_HelpAll", "Button_HelpAll", "Guild")
    END_IF
    
  END_SUB
@@ -111,31 +111,31 @@ SUB (CoordResources)
    $Result =  INT(STRCUT($Result, 1, 1))
    SWITCH($Result)
    CASE(1)
-      WriteCoord("Icon_ResourcesChooseMenu", "Icon_ResourcesChooseMenu", "MainMenu")
+      WriteCoord("Icon_ResourcesChooseMenu", "Icon_ResourcesChooseMenu", "Resources")
       
    CASE(2)
-      WriteCoord("ResourcesChoose", "HuntersSettlement", "MainMenu")
+      WriteCoord("ResourcesChoose", "HuntersSettlement", "Resources")
       
    CASE(3)
-      WriteCoord("ResourcesChoose", "StonePit", "MainMenu")
+      WriteCoord("ResourcesChoose", "StonePit", "Resources")
       
    CASE(4)
-      WriteCoord("ResourcesChoose", "LoggersCamp", "MainMenu")
+      WriteCoord("ResourcesChoose", "LoggersCamp", "Resources")
       
    CASE(5)
-      WriteCoord("ResourcesChoose", "OreMine", "MainMenu")
+      WriteCoord("ResourcesChoose", "OreMine", "Resources")
       
    CASE(6)
-      WriteCoord("ResourcesChoose", "Fief", "MainMenu")
+      WriteCoord("ResourcesChoose", "Fief", "Resources")
       
    CASE(7)
-      WriteCoord("Button_Capture", "Button_Capture", "MainMenu")
+      WriteCoord("Button_Capture", "Button_Capture", "Resources")
       
    CASE(8)
-      WriteCoord("Field_Army", "Field_Army", "MainMenu")
+      WriteCoord("Field_Army", "Field_Army", "Resources")
       
    CASE(9)
-      WriteCoord("Button_Send", "Button_Send", "MainMenu")
+      WriteCoord("Button_Send", "Button_Send", "Resources")
       
    DEFAULT
       // случай по умолчанию
@@ -150,20 +150,22 @@ SUB (CoordWorkshop)
    $Result =  INT(STRCUT($Result, 1, 1))
    SWITCH($Result)
    CASE(1)
-      WriteCoord("Button_Titles", "Button_Titles", "MainMenu")
+      WriteCoord("Button_Titles", "Button_Titles", "Workshop")
       
    CASE(2)
-      WriteCoord("Icon_Material", "Icon_Material", "MainMenu")
+      WriteCoord("Icon_Material", "Icon_Material", "Workshop")
       
    CASE(3)
-      WriteCoord("Button_Combine", "Button_Combine", "MainMenu")
+      WriteCoord("Button_Combine", "Button_Combine", "Workshop")
       
    DEFAULT
       // случай по умолчанию
       
    END_SWITCH
    
-END_SUBSUB (ExecuteSelected, $pResult)
+END_SUB
+
+SUB (ExecuteSelected, $pResult)
    $dialog = 1
    WHILE($dialog = 1)
       
@@ -208,5 +210,4 @@ IF($Result  ! 0)
 END_IF
 
 halt
-
 
