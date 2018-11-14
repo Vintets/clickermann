@@ -1,14 +1,14 @@
+//библиотека стандартных решений для игры "Throne"
+
 #logfile
 $coefficient = 1
 
-//координаты кнопки "Закрыть"
 $Icon_Close_X = 1214
 $Icon_Close_Y = 350
 
 $Icon_CloseWide_X = 1317
 $Icon_CloseWide_Y = 350
 
-//библиотека стандартных решений для игры "Throne"
 //$lX , $lY - координаты точки
 sub(MoveAndClick, $lX , $lY)
    
@@ -215,8 +215,8 @@ SUB(TakeResource, $pResourceType, $pNumberOfSoldiers, $pSdvig, $pSecondArmy)
    OpenWatchman()
    ChooseResource($pResourceType)
    
-   MoveAndClick($Button_Capture_X, $Button_Capture_Y + $pSdvig * $DeltaY)  // 0
-   MoveAndClick($Field_Army_X,$Field_Army_Y)  // 0
+   MoveAndClick($Button_Capture_X, $Button_Capture_Y + $pSdvig * $DeltaY)
+   MoveAndClick($Field_Army_X,$Field_Army_Y)
    
    LOGWRITE ($pNumberofSolder)
    LOGWRITE ($lcoefficient)
@@ -225,13 +225,13 @@ SUB(TakeResource, $pResourceType, $pNumberOfSoldiers, $pSdvig, $pSecondArmy)
    
    IF($pSecondArmy = 2)
       
-      MoveAndClick($Field_Army_X,$Field_Army_Y + 100)  // 0
+      MoveAndClick($Field_Army_X,$Field_Army_Y + 100)
       KEYSTRING($pNumberOfSoldiers*$coefficient)
       
    END_IF
    
    
-   MoveAndClick($Button_Send_X,$Button_Send_Y)  // 0
+   MoveAndClick($Button_Send_X,$Button_Send_Y)
    
    //закрыть маленькое окно
    //$Ystart = $Field_CheckScreen_Ystart + $a * $DeltaY
@@ -283,7 +283,7 @@ SUB(CreateMaterial, $NumberofMaterial)
    
    $Num = INT($NumberofMaterial)
    
-   FOR($a = 0,$a<$Num) // повторяем 3 раза
+   FOR($a = 0,$a<$Num)
       MoveAndClick($Icon_Material_X, $Icon_Material_Y)
       MoveAndClick($Icon_Combine_X, $Icon_Combine_Y)
    END_CYC

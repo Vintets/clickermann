@@ -48,11 +48,11 @@ SUB (ExecuteSelected, $Numner)
    IF($Numner = 5)
       
       //позволяет выбрать сколько видов войск вы хотите отправить на ресурс
-      $ArmyTypes = RADIOBOX("Сколько видов войск вы хотите послать на ресурс?", "1", "2")
+      $ArmyTypes = RADIOBOX("Сколько видов войск отправить?", "1", "2")
       $ArmyTypes =  INT($ArmyTypes)
       
-      $NumberofSolder = INPUTBOX("Cколько материалов вы хотите создать?", "5000", 20)
-      $NumberofSolder =  INT($NumberofSolder)
+      $NumberofSolder = INPUTBOX("Укажите количество войск в каждом виде:", "5000", 20)
+      $NumberofSolder = INT($NumberofSolder)
       
       //2 на еду
       TakeResource(1, $NumberofSolder, 0, $ArmyTypes)
@@ -72,18 +72,18 @@ SUB (ExecuteSelected, $Numner)
    IF($Numner = 6)
       
       //послать на 1 ресурс
-      $ResourceType = RADIOBOX("Какой тип ресурса вы хотите собрать?", "1 - еда", "2 - камень", "3 - дерево", "4 - железо", "5 - серебро")
+      $ResourceType = RADIOBOX("На какой ресурс отправить войска?", "1 - еда", "2 - камень", "3 - дерево", "4 - железо", "5 - серебро")
       $ResourceType =  INT(STRCUT($ResourceType, 1, 1))
       
-      $ArmyTypes = RADIOBOX("Сколько видов войск вы хотите послать на ресурс?", "1", "2")
+      $ArmyTypes = RADIOBOX("Сколько видов войск отправить?", "1", "2")
       $ArmyTypes =  INT($ArmyTypes)
       
-      $NumberofSolder = INPUTBOX("Cколько материалов вы хотите создать?", "5000", 20)
+      $NumberofSolder = INPUTBOX("Укажите количество войск в каждом виде:", "5000", 20)
       LOGWRITE ($NumberofSolder)
       
       //$NumberofSolder =  INT($NumberofSolder)
       
-      $String = RADIOBOX("1я или 2я строка в выборе ресурса?", "1", "2")
+      $String = RADIOBOX("1й или 2й ближайший ресурс собирать?", "1", "2")
       $String =  INT($String) - 1
       IF($NumberofSolder ! 0 AND $ArmyTypes ! 0)
          TakeResource($ResourceType, $NumberofSolder, $String, $ArmyTypes)
