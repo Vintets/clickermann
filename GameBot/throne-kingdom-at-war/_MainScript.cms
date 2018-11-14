@@ -104,8 +104,6 @@ IF(ISKEYDOWN(#ALT)=1)
          ExecuteSelected($Result)
       END_IF
       
-      //	WAITMS(50)
-      
    END_IF
    
    IF(ISKEYDOWN(#2) = 1)
@@ -131,7 +129,8 @@ IF(ISKEYDOWN(#ALT)=1)
 	 IF(ISKEYDOWN(#7) = 1)
       ExecuteSelected(6)
    END_IF
-	 	   
+	 
+	 WAITMS(50)	   
 END_IF
 
 WAITMS(20)

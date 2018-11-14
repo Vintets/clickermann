@@ -1,0 +1,47 @@
+//кнопки закрыть
+INIWRITE("config.ini", "Button_Close_X", 1214,"Button_Close")
+INIWRITE("config.ini", "Button_Close_Y", 350, "Button_Close")
+
+INIWRITE("config.ini", "Icon_CloseWide_X", 1317, "Button_CloseWide")
+INIWRITE("config.ini", "Icon_CloseWide_Y", 350, "Button_CloseWide")
+
+
+//секция Задания
+INIWRITE("config.ini", "Icon_Errand_X", 50, "Errand")
+INIWRITE("config.ini", "Icon_Errand_Y", 365, "Errand")
+
+INIWRITE("config.ini", "Icon_UsualErrand_X", 775, "Errand")
+INIWRITE("config.ini", "Icon_UsualErrand_Y", 379, "Errand")
+
+INIWRITE("config.ini", "DeltaErrandX", 200, "Errand")
+
+INIWRITE("config.ini", "Button_ErrandStart_X", 1161, "Errand")
+INIWRITE("config.ini", "Button_ErrandStart_Y", 515, "Errand")
+
+//секция сокровище
+INIWRITE("config.ini", "Icon_Treasure_X", 1740, "Treasure")
+INIWRITE("config.ini", "Icon_Treasure_Y", 1006, "Treasure")
+
+INIWRITE("config.ini", "Button_Claim_X", 950, "Treasure")
+INIWRITE("config.ini", "Button_Claim_Y", 947, "Treasure")
+
+
+//секция основное меню
+INIWRITE("config.ini", "Icon_MainMenu1_X", 1395, "MainMenu")
+INIWRITE("config.ini", "Icon_MainMenu1_Y", 1056, "MainMenu")
+
+INIWRITE("config.ini", "Icon_Guild_X", 1635, "MainMenu")
+INIWRITE("config.ini", "Icon_Guild_Y", 1095, "MainMenu")
+
+INIWRITE("config.ini", "Icon_Watchman_X", 1704, "MainMenu")
+INIWRITE("config.ini", "Icon_Watchman_Y", 1103, "MainMenu")
+
+//секция гильдия
+
+INIWRITE("config.ini", "Icon_HelpOrderMembers_X", 663, "Guild")
+INIWRITE("config.ini", "Icon_HelpOrderMembers_Y", 870, "Guild")
+
+INIWRITE("config.ini", "Button_HelpAll_X", 1153, "Guild")
+INIWRITE("config.ini", "Button_HelpAll_Y", 899, "Guild")
+
+halt

@@ -3,11 +3,48 @@
 #logfile
 $coefficient = 1
 
-$Icon_Close_X = 1214
-$Icon_Close_Y = 350
+$Button_Close_X = INIREAD("config.ini", "Button_Close_X","Button_Close")
+$Button_Close_Y = INIREAD("config.ini", "Button_Close_Y","Button_Close")
 
-$Icon_CloseWide_X = 1317
-$Icon_CloseWide_Y = 350
+$Button_CloseWide_X = INIREAD("config.ini", "Icon_CloseWide_X", "Button_CloseWide")
+$Button_CloseWide_Y = INIREAD("config.ini", "Icon_CloseWide_Y", "Button_CloseWide")
+
+//секция задания
+$Icon_Errand_X = INIREAD("config.ini", "Icon_Errand_X", "Errand")
+$Icon_Errand_Y = INIREAD("config.ini", "Icon_Errand_Y", "Errand")
+
+$Icon_UsualErrand_X = INIREAD("config.ini", "Icon_UsualErrand_X", "Errand")
+$Icon_UsualErrand_Y = INIREAD("config.ini", "Icon_UsualErrand_Y", "Errand")
+
+$DeltaErrandX = INIREAD("config.ini", "DeltaErrandX", "Errand")
+
+$Button_ErrandStart_X = INIREAD("config.ini", "Button_ErrandStart_X", "Errand")
+$Button_ErrandStart_Y = INIREAD("config.ini", "Button_ErrandStart_Y", "Errand")
+
+//секция сокровище
+$Icon_Treasure_X = INIREAD("config.ini", "Icon_Treasure_X", "Treasure")
+$Icon_Treasure_Y = INIREAD("config.ini", "Icon_Treasure_Y", "Treasure")
+
+$Button_Claim_X = INIREAD("config.ini", "Button_Claim_X", "Treasure")
+$Button_Claim_Y = INIREAD("config.ini", "Button_Claim_Y", "Treasure")
+
+//секция основное меню
+$Icon_MainMenu1_X = INIREAD("config.ini", "Icon_MainMenu1_X", "MainMenu")
+$Icon_MainMenu1_Y = INIREAD("config.ini", "Icon_MainMenu1_Y", "MainMenu")
+
+$Icon_Guild_X = INIREAD("config.ini", "Icon_Guild_X", "MainMenu")
+$Icon_Guild_Y = INIREAD("config.ini", "Icon_Guild_Y", "MainMenu")
+
+$Icon_Watchman_X = INIREAD("config.ini", "Icon_Watchman_X", "MainMenu")
+$Icon_Watchman_Y = INIREAD("config.ini", "Icon_Watchman_Y", "MainMenu")
+
+//секция гильдия
+$Icon_HelpOrderMembers_X = INIREAD("config.ini", "Icon_HelpOrderMembers_X", "Guild")
+$Icon_HelpOrderMembers_Y = INIREAD("config.ini", "Icon_HelpOrderMembers_Y", "Guild")
+
+$Button_HelpAll_X = INIREAD("config.ini", "Button_HelpAll_X", "Guild")
+$Button_HelpAll_Y = INIREAD("config.ini", "Button_HelpAll_Y", "Guild")
+
 
 //$lX , $lY - координаты точки
 sub(MoveAndClick, $lX , $lY)
@@ -34,51 +71,30 @@ end_sub
 //один раз прописал - работать будет всегда и быстро
 SUB(DoErrandsOnPage) // подпрограмма
    
-   //координаты кнопки "Выполнить квест" "Start"
-   $Icon_Start_X = 1161
-   $Icon_Start_Y = 515
-   
    FOR($a = 0, $a < 15)
-      MoveAndClick($Icon_Start_X, $Icon_Start_Y)
-      MoveAndClick($Icon_Start_X, $Icon_Start_Y)
+      MoveAndClick($Button_ErrandStart_X, $Button_ErrandStart_Y)
+      MoveAndClick($Button_ErrandStart_X, $Button_ErrandStart_Y)
    END_CYC
    
 END_SUB
 
 SUB(DoErrands)
    
-   //координаты иконки к квестами
-   $Icon_Errand_X = 50
-   $Icon_Errand_Y = 365
-   
-   //координаты вкладки "Обычные" (Special)
-   $Icon_UsualErrand_X = 775
-   $Icon_UsualErrand_Y = 379
-   
-   //смещение для перехода по вкладкам
-   $DeltaX = 200
-   
    //открываем окно выполнения заданий
    MoveAndClick($Icon_Errand_X, $Icon_Errand_Y)
    
    //на 3х вкладках выполняем задания
    FOR($kv = 0, $kv < 3)
-      $lx = $Icon_UsualErrand_X + $kv * $DeltaX
+      $lx = $Icon_UsualErrand_X + $kv * $DeltaErrandX
       MoveAndClick($lx, $Icon_UsualErrand_Y)
       DoErrandsOnPage()
    END_CYC
    
-   MoveAndClick($Icon_Close_X, $Icon_Close_Y)
+   MoveAndClick($Button_Close_X, $Button_Close_Y)
    
 END_SUB
 
 SUB(TakeTreasure)
-   
-   $Icon_Treasure_X = 1740
-   $Icon_Treasure_Y = 1006
-   
-   $Icon_Claim_X = 950
-   $Icon_Claim_Y = 947
    
    //открываем окно выполнения заданий
    MoveAndClick($Icon_Treasure_X, $Icon_Treasure_Y)
@@ -86,43 +102,25 @@ SUB(TakeTreasure)
    $LongDelayR = RND(650, 750)
    waitms($LongDelayR)
    
-   MoveAndClick($Icon_Claim_X, $Icon_Claim_Y)
+   MoveAndClick($Button_Claim_X, $Button_Claim_Y)
    
 END_SUB
 
 SUB(HelpOrderMembers)
    
-   $Icon_MainMenu_X = 1395
-   $Icon_MainMenu_Y = 1056
-   
-   $Icon_Guild_X = 1635
-   $Icon_Guild_Y = 1095
-   
-   $Icon_HelpOrderMembers_X = 663
-   $Icon_HelpOrderMembers_Y = 870
-   
-   $Icon_HelpAll_X = 1153
-   $Icon_HelpAll_Y = 899
-   
-   MoveAndClick($Icon_MainMenu_X, $Icon_MainMenu_Y)
+   MoveAndClick($Icon_MainMenu1_X, $Icon_MainMenu1_Y)
    MoveAndClick($Icon_Guild_X, $Icon_Guild_Y)
    MoveAndClick($Icon_HelpOrderMembers_X, $Icon_HelpOrderMembers_Y)
-   MoveAndClick($Icon_HelpAll_X, $Icon_HelpAll_Y)
-   MoveAndClick($Icon_Close_X, $Icon_Close_Y)
-   MoveAndClick($Icon_CloseWide_X, $Icon_CloseWide_Y)
+   MoveAndClick($Button_HelpAll_X, $Button_HelpAll_Y)
+   MoveAndClick($Button_Close_X, $Button_Close_Y)
+   MoveAndClick($Button_CloseWide_X, $Button_CloseWide_Y)
    
 END_SUB
 
 
 SUB(OpenWatchman)
    
-   $Icon_MainMenu_X = 1395
-   $Icon_MainMenu_Y = 1056
-   
-   $Icon_Watchman_X = 1704
-   $Icon_Watchman_Y = 1103
-   
-   MoveAndClick($Icon_MainMenu_X, $Icon_MainMenu_Y)
+   MoveAndClick($Icon_MainMenu1_X, $Icon_MainMenu1_Y)
    
    MoveAndClick($Icon_Watchman_X, $Icon_Watchman_Y)
    
@@ -288,6 +286,6 @@ SUB(CreateMaterial, $NumberofMaterial)
       MoveAndClick($Icon_Combine_X, $Icon_Combine_Y)
    END_CYC
    
-   MoveAndClick($Icon_CloseWide_X, $Icon_CloseWide_Y)
+   MoveAndClick($Button_CloseWide_X, $Button_CloseWide_Y)
    
 END_SUB
