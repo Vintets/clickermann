@@ -63,8 +63,8 @@ SUB (ExecuteSelected, $Numner)
       TakeResource(2, $NumberofSolder, 1, $ArmyTypes)
       
       //2 на серебро
-      TakeResource(3, $NumberofSolder, 0, $ArmyTypes)
-      TakeResource(3, $NumberofSolder, 1, $ArmyTypes)
+      TakeResource(4, $NumberofSolder, 0, $ArmyTypes)
+      TakeResource(4, $NumberofSolder, 1, $ArmyTypes)
       
    END_IF
    
