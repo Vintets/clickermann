@@ -39,8 +39,8 @@ $Icon_Guild_Y = INIREAD("config.ini", "Icon_Guild_Y", "MainMenu")
 $Icon_Watchman_X = INIREAD("config.ini", "Icon_Watchman_X", "MainMenu")
 $Icon_Watchman_Y = INIREAD("config.ini", "Icon_Watchman_Y", "MainMenu")
 
-$Icon_Workshop_X = INIREAD("config.ini", "Icon_Watchman_X", "MainMenu")
-$Icon_Workshop_Y = INIREAD("config.ini", "Icon_Watchman_Y", "MainMenu")
+$Icon_Workshop_X = INIREAD("config.ini", "Icon_Workshop_X", "MainMenu")
+$Icon_Workshop_Y = INIREAD("config.ini", "Icon_Workshop_Y", "MainMenu")
 
 //секция гильдия
 $Icon_HelpOrderMembers_X = INIREAD("config.ini", "Icon_HelpOrderMembers_X", "Guild")
@@ -181,13 +181,13 @@ SUB(ChooseResource, $ResourceTypel)
       
       //выбрали камень
       MoveAndClick ($ResourcesChoose_X, $StonePit_Y)
-      $coefficient = 0.85
+      $coefficient = 0.8
       
    CASE(3)
       
       //выбрали дерево
       MoveAndClick ($ResourcesChoose_X, $LoggersCamp_Y)
-      $coefficient = 0.85
+      $coefficient = 0.8
       
    CASE(4)
       //выбрали железо
@@ -258,7 +258,7 @@ END_SUB
 
 SUB(OpenWorkshop)
    
-   MoveAndClick($Icon_MainMenu2_X, $Icon_MainMenu_Y)
+   MoveAndClick($Icon_MainMenu2_X, $Icon_MainMenu1_Y)
    MoveAndClick($Icon_Workshop_X,  $Icon_Workshop_Y)
    
 END_SUB
