@@ -1,4 +1,13 @@
-//кнопки закрыть
+п»ї//РєРѕРЅСЃС‚Р°РЅС‚С‹
+INIWRITE("config.ini", "right_hand_mouse", 1)
+INIWRITE("config.ini", "resource1", 1)
+INIWRITE("config.ini", "resource2", 1)
+INIWRITE("config.ini", "resource3", 3)
+INIWRITE("config.ini", "resource4", 3)
+INIWRITE("config.ini", "resource5", 2)
+INIWRITE("config.ini", "resource6", 2)
+
+//РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚СЊ
 INIWRITE("config.ini", "Button_Close_X", 1214,"Button_Close")
 INIWRITE("config.ini", "Button_Close_Y", 350, "Button_Close")
 
@@ -6,7 +15,7 @@ INIWRITE("config.ini", "Icon_CloseWide_X", 1317, "Button_CloseWide")
 INIWRITE("config.ini", "Icon_CloseWide_Y", 350, "Button_CloseWide")
 
 
-//секция Задания
+//СЃРµРєС†РёСЏ Р—Р°РґР°РЅРёСЏ
 INIWRITE("config.ini", "Icon_Errand_X", 50, "Errand")
 INIWRITE("config.ini", "Icon_Errand_Y", 365, "Errand")
 
@@ -14,11 +23,15 @@ INIWRITE("config.ini", "Icon_UsualErrand_X", 775, "Errand")
 INIWRITE("config.ini", "Icon_UsualErrand_Y", 379, "Errand")
 
 INIWRITE("config.ini", "DeltaErrandX", 200, "Errand")
+INIWRITE("config.ini", "ErrandsCount", 15, "Errand")
 
 INIWRITE("config.ini", "Button_ErrandStart_X", 1161, "Errand")
 INIWRITE("config.ini", "Button_ErrandStart_Y", 515, "Errand")
 
-//секция сокровище
+INIWRITE("config.ini", "Button_ErrandRefresh_X", 1160, "Errand")
+INIWRITE("config.ini", "Button_ErrandRefresh_Y", 917, "Errand")
+
+//СЃРµРєС†РёСЏ СЃРѕРєСЂРѕРІРёС‰Рµ
 INIWRITE("config.ini", "Icon_Treasure_X", 1740, "Treasure")
 INIWRITE("config.ini", "Icon_Treasure_Y", 1006, "Treasure")
 
@@ -26,7 +39,7 @@ INIWRITE("config.ini", "Button_Claim_X", 950, "Treasure")
 INIWRITE("config.ini", "Button_Claim_Y", 947, "Treasure")
 
 
-//секция основное меню
+//СЃРµРєС†РёСЏ РѕСЃРЅРѕРІРЅРѕРµ РјРµРЅСЋ
 INIWRITE("config.ini", "Icon_MainMenu1_X", 1395, "MainMenu")
 INIWRITE("config.ini", "Icon_MainMenu1_Y", 1056, "MainMenu")
 
@@ -42,7 +55,7 @@ INIWRITE("config.ini", "Icon_Watchman_Y", 1103, "MainMenu")
 INIWRITE("config.ini", "Icon_Workshop_X", 1489, "MainMenu")
 INIWRITE("config.ini", "Icon_Workshop_Y", 1103, "MainMenu")
 
-//секция гильдия
+//СЃРµРєС†РёСЏ РіРёР»СЊРґРёСЏ
 
 INIWRITE("config.ini", "Icon_HelpOrderMembers_X", 663, "Guild")
 INIWRITE("config.ini", "Icon_HelpOrderMembers_Y", 870, "Guild")
@@ -50,7 +63,7 @@ INIWRITE("config.ini", "Icon_HelpOrderMembers_Y", 870, "Guild")
 INIWRITE("config.ini", "Button_HelpAll_X", 1153, "Guild")
 INIWRITE("config.ini", "Button_HelpAll_Y", 899, "Guild")
 
-//секция сбор ресурсов
+//СЃРµРєС†РёСЏ СЃР±РѕСЂ СЂРµСЃСѓСЂСЃРѕРІ
 INIWRITE("config.ini", "Icon_ResourcesChooseMenu_X", 820, "Resources")
 INIWRITE("config.ini", "Icon_ResourcesChooseMenu_Y", 480, "Resources")
 
@@ -73,7 +86,7 @@ INIWRITE("config.ini", "Field_Army_Y", 573, "Resources")
 INIWRITE("config.ini", "Button_Send_X", 1169, "Resources")
 INIWRITE("config.ini", "Button_Send_Y", 910, "Resources")
 
-//секция Workshop 
+//СЃРµРєС†РёСЏ Workshop 
 
 INIWRITE("config.ini", "Button_Titles_X", 715, "Workshop")
 INIWRITE("config.ini", "Button_Titles_Y", 910, "Workshop")

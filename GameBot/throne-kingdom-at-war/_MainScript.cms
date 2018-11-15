@@ -1,27 +1,34 @@
-#include "thronelib.cms"
+п»ї#include "thronelib.cms"
 #logfile
-//основной алгоритм
+//РѕСЃРЅРѕРІРЅРѕР№ Р°Р»РіРѕСЂРёС‚Рј
 //LOGCLEAR
 
 
-// поток
-//THREAD(thr_name)
-//#include "thronelib.cms"
-//HelpOrderMembers()
-//  waitms(5*560*1000) // задержка для разгрузки CPU
-//END_THREAD
+// РїРѕС‚РѕРє
+THREAD(thr_name)
+   #include "thronelib.cms"
+   HelpOrderMembers()
+   waitms(5*RND(60,120)*1000)
+END_THREAD
+
+THREAD(thr_name1)
+   #include "thronelib.cms"
+   waitms(10*1000)
+   DoErrands()
+   TakeTreasure()
+   waitms(60*60*1000)
+END_THREAD
 
 SUB (ExecuteSelected, $Numner)
-   //setThread(thr_name, 1)
    
-   //нажать руку помощи
+   //РЅР°Р¶Р°С‚СЊ СЂСѓРєСѓ РїРѕРјРѕС‰Рё
    IF($Numner = 1)
       
       HelpOrderMembers()
       
    END_IF
    
-   //2 собрать сокровища
+   //2 СЃРѕР±СЂР°С‚СЊ СЃРѕРєСЂРѕРІРёС‰Р°
    IF($Numner = 2)
       
       TakeTreasure()
@@ -29,7 +36,7 @@ SUB (ExecuteSelected, $Numner)
    END_IF
    
    
-   //выполнить задания
+   //РІС‹РїРѕР»РЅРёС‚СЊ Р·Р°РґР°РЅРёСЏ
    IF($Numner = 3)
       
       DoErrands()
@@ -39,7 +46,7 @@ SUB (ExecuteSelected, $Numner)
    IF($Numner = 4)
       
       move(945, 707)
-      $NumberofMaterial = INPUTBOX("Cколько материалов вы хотите создать?", "5", 20)
+      $NumberofMaterial = INPUTBOX("CРєРѕР»СЊРєРѕ РјР°С‚РµСЂРёР°Р»РѕРІ РІС‹ С…РѕС‚РёС‚Рµ СЃРѕР·РґР°С‚СЊ?", "5", 20)
       
       CreateMaterial($NumberofMaterial)
       
@@ -47,43 +54,54 @@ SUB (ExecuteSelected, $Numner)
    
    IF($Numner = 5)
       
-      //позволяет выбрать сколько видов войск вы хотите отправить на ресурс
-      $ArmyTypes = RADIOBOX("Сколько видов войск отправить?", "1", "2")
+      //РїРѕР·РІРѕР»СЏРµС‚ РІС‹Р±СЂР°С‚СЊ СЃРєРѕР»СЊРєРѕ РІРёРґРѕРІ РІРѕР№СЃРє РІС‹ С…РѕС‚РёС‚Рµ РѕС‚РїСЂР°РІРёС‚СЊ РЅР° СЂРµСЃСѓСЂСЃ
+      $ArmyTypes = RADIOBOX("РЎРєРѕР»СЊРєРѕ РІРёРґРѕРІ РІРѕР№СЃРє РѕС‚РїСЂР°РІРёС‚СЊ?", "1", "2")
       $ArmyTypes =  INT($ArmyTypes)
       
-      $NumberofSolder = INPUTBOX("Укажите количество войск в каждом виде:", "5000", 20)
+      $NumberofSolder = INPUTBOX("РЈРєР°Р¶РёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ РІРѕР№СЃРє РІ РєР°Р¶РґРѕРј РІРёРґРµ:", "5000", 20)
       $NumberofSolder = INT($NumberofSolder)
       
-      //2 на еду
-      TakeResource(1, $NumberofSolder, 0, $ArmyTypes)
-      TakeResource(1, $NumberofSolder, 1, $ArmyTypes)
+      $numstr = 0
+      $resnumold = -1
+      FOR($a=1,$a<6)
+         
+				 $resname = STRCONCAT("resource", $a)
+         $resnum = INIREAD($filename, $resname);
+         
+         IF($resnumold ! $resnum)
+            $numstr = 0
+            $resnumold = $resnum
+         ELSE
+            $numstr =  $numstr + 1
+         END_IF
+         
+				 IF($numstr = 3)
+            $a = 999
+         END_IF
+         
+         TakeResource($resnum, $NumberofSolder, $numstr, $ArmyTypes)
+         
+      END_CYC
       
-      //2 на железо
-      TakeResource(2, $NumberofSolder, 0, $ArmyTypes)
-      TakeResource(2, $NumberofSolder, 1, $ArmyTypes)
-      
-      //2 на серебро
-      TakeResource(4, $NumberofSolder, 0, $ArmyTypes)
-      TakeResource(4, $NumberofSolder, 1, $ArmyTypes)
       
    END_IF
    
    
    IF($Numner = 6)
       
-      //послать на 1 ресурс
-      $ResourceType = RADIOBOX("На какой ресурс отправить войска?", "1 - еда", "2 - камень", "3 - дерево", "4 - железо", "5 - серебро")
+      //РїРѕСЃР»Р°С‚СЊ РЅР° 1 СЂРµСЃСѓСЂСЃ
+      $ResourceType = RADIOBOX("РќР° РєР°РєРѕР№ СЂРµСЃСѓСЂСЃ РѕС‚РїСЂР°РІРёС‚СЊ РІРѕР№СЃРєР°?", "1 - РµРґР°", "2 - РєР°РјРµРЅСЊ", "3 - РґРµСЂРµРІРѕ", "4 - Р¶РµР»РµР·Рѕ", "5 - СЃРµСЂРµР±СЂРѕ")
       $ResourceType =  INT(STRCUT($ResourceType, 1, 1))
       
-      $ArmyTypes = RADIOBOX("Сколько видов войск отправить?", "1", "2")
+      $ArmyTypes = RADIOBOX("РЎРєРѕР»СЊРєРѕ РІРёРґРѕРІ РІРѕР№СЃРє РѕС‚РїСЂР°РІРёС‚СЊ?", "1", "2")
       $ArmyTypes =  INT($ArmyTypes)
       
-      $NumberofSolder = INPUTBOX("Укажите количество войск в каждом виде:", "5000", 20)
+      $NumberofSolder = INPUTBOX("РЈРєР°Р¶РёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ РІРѕР№СЃРє РІ РєР°Р¶РґРѕРј РІРёРґРµ:", "5000", 20)
       LOGWRITE ($NumberofSolder)
       
       //$NumberofSolder =  INT($NumberofSolder)
       
-      $String = RADIOBOX("1й или 2й ближайший ресурс собирать?", "1", "2")
+      $String = RADIOBOX("1Р№ РёР»Рё 2Р№ Р±Р»РёР¶Р°Р№С€РёР№ СЂРµСЃСѓСЂСЃ СЃРѕР±РёСЂР°С‚СЊ?", "1", "2")
       $String =  INT($String) - 1
       IF($NumberofSolder ! 0 AND $ArmyTypes ! 0)
          TakeResource($ResourceType, $NumberofSolder, $String, $ArmyTypes)
@@ -91,6 +109,18 @@ SUB (ExecuteSelected, $Numner)
       
    END_IF
    
+   IF($Numner = 7)
+      
+      $NumberofRepetitions = INPUTBOX("РЈРєР°Р¶РёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРІС‚РѕСЂРµРЅРёР№ РІС‹РїРѕР»РЅРµРЅРёСЏ:", "10", 20)
+      $TypeofErrands       = RADIOBOX("РќР° РєР°РєРѕР№ РІРєР»Р°РґРєРµ РІС‹РїРѕР»РЅСЏС‚СЊ Р·Р°РґР°РЅРёСЏ?", "1 - РћР±С‹С‡РЅС‹Рµ", "2 - Р“РёР»СЊРґРёСЏ", "3 - Р’РРџ")
+      
+      IF($NumberofRepetitions ! 0 AND $TypeofErrands ! 0)
+         $TypeofErrands =  INT(STRCUT($TypeofErrands, 1, 1)) - 1
+         DoErrandsRepetitions ($NumberofRepetitions, $TypeofErrands)
+      END_IF
+      
+      
+   END_IF
    
 END_SUB
 
@@ -98,7 +128,7 @@ IF(ISKEYDOWN(#ALT)=1)
    
    IF(ISKEYDOWN(#1) = 1)
       
-      $Result = RADIOBOX("Что вы хотите сделать?", "1 - Нажать руку помощи", "2 - Забрать сокровище", "3 - Выполнить задания", "4 - Создать материалы", "5 - (ТЕСТ) Сбор ближайших ресурсов", "6 - (ТЕСТ) Сбор одного ресурса")
+      $Result = RADIOBOX("Р§С‚Рѕ РІС‹ С…РѕС‚РёС‚Рµ СЃРґРµР»Р°С‚СЊ?", "1 - РќР°Р¶Р°С‚СЊ СЂСѓРєСѓ РїРѕРјРѕС‰Рё", "2 - Р—Р°Р±СЂР°С‚СЊ СЃРѕРєСЂРѕРІРёС‰Рµ", "3 - Р’С‹РїРѕР»РЅРёС‚СЊ Р·Р°РґР°РЅРёСЏ", "4 - РЎРѕР·РґР°С‚СЊ РјР°С‚РµСЂРёР°Р»С‹", "5 - (РўР•РЎРў) РЎР±РѕСЂ Р±Р»РёР¶Р°Р№С€РёС… СЂРµСЃСѓСЂСЃРѕРІ", "6 - (РўР•РЎРў) РЎР±РѕСЂ РѕРґРЅРѕРіРѕ СЂРµСЃСѓСЂСЃР°", "7 - РІС‹РїРѕР»РЅРёС‚СЊ Р·Р°РґР°РЅРёСЏ СЃ Р°РІС‚РѕРѕР±РЅРѕРІР»РµРЅРёРµРј")
       $Result =  INT(STRCUT($Result, 1, 1))
       IF($Result  ! 0)
          ExecuteSelected($Result)
@@ -109,28 +139,35 @@ IF(ISKEYDOWN(#ALT)=1)
    IF(ISKEYDOWN(#2) = 1)
       ExecuteSelected(1)
    END_IF
-    
+   
    IF(ISKEYDOWN(#3) = 1)
       ExecuteSelected(2)
    END_IF
-  
-	 IF(ISKEYDOWN(#4) = 1)
+   
+   IF(ISKEYDOWN(#4) = 1)
       ExecuteSelected(3)
    END_IF
- 
-	 IF(ISKEYDOWN(#5) = 1)
+   
+   IF(ISKEYDOWN(#5) = 1)
       ExecuteSelected(4)
    END_IF
- 
-	 IF(ISKEYDOWN(#6) = 1)
+   
+   IF(ISKEYDOWN(#6) = 1)
       ExecuteSelected(5)
    END_IF
- 
-	 IF(ISKEYDOWN(#7) = 1)
+   
+   IF(ISKEYDOWN(#7) = 1)
       ExecuteSelected(6)
    END_IF
-	 
-	 WAITMS(50)	   
+   
+   IF(ISKEYDOWN(#8) = 1)
+      ExecuteSelected(7)
+   END_IF
+   
+   WAITMS(50)
 END_IF
+
+setThread(thr_name, 0)
+setThread(thr_name1, 0)
 
 WAITMS(20)

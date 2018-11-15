@@ -1,4 +1,4 @@
-//библиотека стандартных решений для игры "Throne"
+п»ї//Р±РёР±Р»РёРѕС‚РµРєР° СЃС‚Р°РЅРґР°СЂС‚РЅС‹С… СЂРµС€РµРЅРёР№ РґР»СЏ РёРіСЂС‹ "Throne"
 
 #logfile
 $filename = "config.ini"
@@ -12,7 +12,7 @@ $Button_Close_Y = INIREAD($filename, "Button_Close_Y","Button_Close")
 $Button_CloseWide_X = INIREAD($filename, "Icon_CloseWide_X", "Button_CloseWide")
 $Button_CloseWide_Y = INIREAD($filename, "Icon_CloseWide_Y", "Button_CloseWide")
 
-//секция задания
+//СЃРµРєС†РёСЏ Р·Р°РґР°РЅРёСЏ
 $Icon_Errand_X = INIREAD($filename, "Icon_Errand_X", "Errand")
 $Icon_Errand_Y = INIREAD($filename, "Icon_Errand_Y", "Errand")
 
@@ -24,14 +24,18 @@ $DeltaErrandX = INIREAD($filename, "DeltaErrandX", "Errand")
 $Button_ErrandStart_X = INIREAD($filename, "Button_ErrandStart_X", "Errand")
 $Button_ErrandStart_Y = INIREAD($filename, "Button_ErrandStart_Y", "Errand")
 
-//секция сокровище
+$Button_ErrandRefresh_X = INIREAD($filename, "Button_ErrandRefresh_X", "Errand")
+$Button_ErrandRefresh_Y = INIREAD($filename, "Button_ErrandRefresh_Y", "Errand")
+
+
+//СЃРµРєС†РёСЏ СЃРѕРєСЂРѕРІРёС‰Рµ
 $Icon_Treasure_X = INIREAD($filename, "Icon_Treasure_X", "Treasure")
 $Icon_Treasure_Y = INIREAD($filename, "Icon_Treasure_Y", "Treasure")
 
 $Button_Claim_X = INIREAD($filename, "Button_Claim_X", "Treasure")
 $Button_Claim_Y = INIREAD($filename, "Button_Claim_Y", "Treasure")
 
-//секция основное меню
+//СЃРµРєС†РёСЏ РѕСЃРЅРѕРІРЅРѕРµ РјРµРЅСЋ
 $Icon_MainMenu1_X = INIREAD($filename, "Icon_MainMenu1_X", "MainMenu")
 $Icon_MainMenu1_Y = INIREAD($filename, "Icon_MainMenu1_Y", "MainMenu")
 $Icon_MainMenu2_X = INIREAD($filename, "Icon_MainMenu2_X", "MainMenu")
@@ -45,14 +49,14 @@ $Icon_Watchman_Y = INIREAD($filename, "Icon_Watchman_Y", "MainMenu")
 $Icon_Workshop_X = INIREAD($filename, "Icon_Workshop_X", "MainMenu")
 $Icon_Workshop_Y = INIREAD($filename, "Icon_Workshop_Y", "MainMenu")
 
-//секция гильдия
+//СЃРµРєС†РёСЏ РіРёР»СЊРґРёСЏ
 $Icon_HelpOrderMembers_X = INIREAD($filename, "Icon_HelpOrderMembers_X", "Guild")
 $Icon_HelpOrderMembers_Y = INIREAD($filename, "Icon_HelpOrderMembers_Y", "Guild")
 
 $Button_HelpAll_X = INIREAD($filename, "Button_HelpAll_X", "Guild")
 $Button_HelpAll_Y = INIREAD($filename, "Button_HelpAll_Y", "Guild")
 
-//секция сбор ресурсов
+//СЃРµРєС†РёСЏ СЃР±РѕСЂ СЂРµСЃСѓСЂСЃРѕРІ
 $Icon_ResourcesChooseMenu_X = INIREAD($filename, "Icon_ResourcesChooseMenu_X", "Resources")
 $Icon_ResourcesChooseMenu_Y = INIREAD($filename, "Icon_ResourcesChooseMenu_Y", "Resources")
 
@@ -75,7 +79,7 @@ $Field_Army_Y = INIREAD($filename, "Field_Army_Y", "Resources")
 $Button_Send_X = INIREAD($filename, "Button_Send_X", "Resources")
 $Button_Send_Y = INIREAD($filename, "Button_Send_Y", "Resources")
 
-//секция Workshop
+//СЃРµРєС†РёСЏ Workshop
 $Button_Titles_X = INIREAD($filename, "Button_Titles_X", "Workshop")
 $Button_Titles_Y = INIREAD($filename, "Button_Titles_Y", "Workshop")
 
@@ -86,7 +90,7 @@ $Button_Combine_X = INIREAD($filename, "Button_Combine_X", "Workshop")
 $Button_Combine_Y = INIREAD($filename, "Button_Combine_Y", "Workshop")
 
 
-//$lX , $lY - координаты точки
+//$lX , $lY - РєРѕРѕСЂРґРёРЅР°С‚С‹ С‚РѕС‡РєРё
 sub(MoveAndClick, $lX , $lY)
    
    $DelayR     = RND(100, 150)
@@ -100,15 +104,15 @@ sub(MoveAndClick, $lX , $lY)
       waitms($DelayR)
       
       lUp($lX,$lY)
-   ELSE  
+   ELSE
       rDown($lX,$lY)
       waitms($DelayR)
       
       rUp($lX,$lY)
    END_IF
-  
-   //спец. задержка после нажатия. чтобы сервер обработал клик
-   //иначе много кликов пройдёт впустую
+   
+   //СЃРїРµС†. Р·Р°РґРµСЂР¶РєР° РїРѕСЃР»Рµ РЅР°Р¶Р°С‚РёСЏ. С‡С‚РѕР±С‹ СЃРµСЂРІРµСЂ РѕР±СЂР°Р±РѕС‚Р°Р» РєР»РёРє
+   //РёРЅР°С‡Рµ РјРЅРѕРіРѕ РєР»РёРєРѕРІ РїСЂРѕР№РґС‘С‚ РІРїСѓСЃС‚СѓСЋ
    waitms($LongDelayR)
    
 end_sub
@@ -116,28 +120,56 @@ end_sub
 SUB(DoErrands)
    
    $ErrandsCount = INIREAD($filename, "ErrandsCount", "Errand")
-   //открываем окно выполнения заданий
+   //РѕС‚РєСЂС‹РІР°РµРј РѕРєРЅРѕ РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РґР°РЅРёР№
    MoveAndClick($Icon_Errand_X, $Icon_Errand_Y)
    
-   //на 3х вкладках выполняем задания
+   //РЅР° 3С… РІРєР»Р°РґРєР°С… РІС‹РїРѕР»РЅСЏРµРј Р·Р°РґР°РЅРёСЏ
    FOR($kv = 0, $kv < 3)
       $lx = $Icon_UsualErrand_X + $kv * $DeltaErrandX
       MoveAndClick($lx, $Icon_UsualErrand_Y)
       
-			FOR($a = 0, $a < $ErrandsCount)
+      FOR($a = 0, $a < $ErrandsCount)
          MoveAndClick($Button_ErrandStart_X, $Button_ErrandStart_Y)
          MoveAndClick($Button_ErrandStart_X, $Button_ErrandStart_Y)
       END_CYC
-   
-	 END_CYC
+      
+   END_CYC
    
    MoveAndClick($Button_Close_X, $Button_Close_Y)
    
 END_SUB
 
+SUB(DoErrandsRepetitions, $pNumberofRepetitions, $pTypeofErrands)
+   
+    $ErrandsCount = INIREAD($filename, "ErrandsCount", "Errand")
+   
+   //РѕС‚РєСЂС‹РІР°РµРј РѕРєРЅРѕ РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РґР°РЅРёР№
+   MoveAndClick($Icon_Errand_X, $Icon_Errand_Y)
+   
+   //РЅР° РІС‹Р±СЂР°РЅРЅРѕР№ РІРєР»Р°РґРєРµ РІС‹РїРѕР»РЅСЏРµРј Р·Р°РґР°РЅРёСЏ РІРєР»Р°РґРєР°С… РІС‹РїРѕР»РЅСЏРµРј Р·Р°РґР°РЅРёСЏ
+   $lx = $Icon_UsualErrand_X + $pTypeofErrands * $DeltaErrandX
+   MoveAndClick($lx, $Icon_UsualErrand_Y)
+   
+   FOR($kv = 0, $kv < $pNumberofRepetitions)
+      
+      FOR($a = 0, $a < $ErrandsCount)
+         MoveAndClick($Button_ErrandStart_X, $Button_ErrandStart_Y)
+         MoveAndClick($Button_ErrandStart_X, $Button_ErrandStart_Y)
+      END_CYC
+      
+      MoveAndClick($Button_ErrandRefresh_X, $Button_ErrandRefresh_Y)
+      
+      
+   END_CYC
+   
+   MoveAndClick($Button_Close_X, $Button_Close_Y)
+   
+END_SUB
+
+
 SUB(TakeTreasure)
    
-   //открываем окно выполнения заданий
+   //РѕС‚РєСЂС‹РІР°РµРј РѕРєРЅРѕ РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РґР°РЅРёР№
    MoveAndClick($Icon_Treasure_X, $Icon_Treasure_Y)
    
    $LongDelayR = RND(650, 750)
@@ -170,44 +202,44 @@ END_SUB
 
 SUB(ChooseResource, $ResourceTypel)
    
-   //вызвали подменю
+   //РІС‹Р·РІР°Р»Рё РїРѕРґРјРµРЅСЋ
    MoveAndClick($Icon_ResourcesChooseMenu_X,$Icon_ResourcesChooseMenu_Y)
    
    SWITCH($ResourceTypel)
-      
-   CASE(1)
-      
-      //выбрали еду
-      MoveAndClick ($ResourcesChoose_X, $HuntersSettlement_Y)
-      $coefficient = 1
-      
-   CASE(2)
-      
-      //выбрали камень
-      MoveAndClick ($ResourcesChoose_X, $StonePit_Y)
-      $coefficient = 0.8
-      
-   CASE(3)
-      
-      //выбрали дерево
-      MoveAndClick ($ResourcesChoose_X, $LoggersCamp_Y)
-      $coefficient = 0.8
-      
-   CASE(4)
-      //выбрали железо
-      MoveAndClick ($ResourcesChoose_X, $OreMine_Y)
-      $coefficient = 0.6
-      
-   CASE(5)
-      //выбрали серебро
-      MoveAndClick ($ResourcesChoose_X, $Fief_Y)
-      $coefficient = 0.4
-      
-   DEFAULT
-      //выбрали еду
-      MoveAndClick ($ResourcesChoose_X, $HuntersSettlement_Y)
-      $coefficient = 1
-      
+         
+      CASE(1)
+         
+         //РІС‹Р±СЂР°Р»Рё РµРґСѓ
+         MoveAndClick ($ResourcesChoose_X, $HuntersSettlement_Y)
+         $coefficient = 1
+         
+      CASE(2)
+         
+         //РІС‹Р±СЂР°Р»Рё РєР°РјРµРЅСЊ
+         MoveAndClick ($ResourcesChoose_X, $StonePit_Y)
+         $coefficient = 0.8
+         
+      CASE(3)
+         
+         //РІС‹Р±СЂР°Р»Рё РґРµСЂРµРІРѕ
+         MoveAndClick ($ResourcesChoose_X, $LoggersCamp_Y)
+         $coefficient = 0.8
+         
+      CASE(4)
+         //РІС‹Р±СЂР°Р»Рё Р¶РµР»РµР·Рѕ
+         MoveAndClick ($ResourcesChoose_X, $OreMine_Y)
+         $coefficient = 0.6
+         
+      CASE(5)
+         //РІС‹Р±СЂР°Р»Рё СЃРµСЂРµР±СЂРѕ
+         MoveAndClick ($ResourcesChoose_X, $Fief_Y)
+         $coefficient = 0.4
+         
+      DEFAULT
+         //РІС‹Р±СЂР°Р»Рё РµРґСѓ
+         MoveAndClick ($ResourcesChoose_X, $HuntersSettlement_Y)
+         $coefficient = 1
+         
    END_SWITCH
    
 END_SUB
@@ -232,7 +264,7 @@ SUB(TakeResource, $pResourceType, $pNumberOfSoldiers, $pSdvig, $pSecondArmy)
    
    MoveAndClick($Button_Send_X,$Button_Send_Y)
    
-   //закрыть маленькое окно
+   //Р·Р°РєСЂС‹С‚СЊ РјР°Р»РµРЅСЊРєРѕРµ РѕРєРЅРѕ
    //$Ystart = $Field_CheckScreen_Ystart + $a * $DeltaY
    //$Yend   = $Field_CheckScreen_Yend + $a * $DeltaY
    
@@ -240,12 +272,12 @@ SUB(TakeResource, $pResourceType, $pNumberOfSoldiers, $pSdvig, $pSecondArmy)
    // LOGWRITE ($Field_CheckScreen_Xstart, $Ystart, $Field_CheckScreen_Xend, $Yend)
    
    //IF_PIXEL_IN($Field_CheckScreen_Xstart, $Ystart, $Field_CheckScreen_Xend, $Yend, $Color_ResourceNotClear
-   // LOGWRITE ("Цвет найден")
+   // LOGWRITE ("Р¦РІРµС‚ РЅР°Р№РґРµРЅ")
    
    //ELSE
-   // LOGWRITE ("Цвет не найден")
+   // LOGWRITE ("Р¦РІРµС‚ РЅРµ РЅР°Р№РґРµРЅ")
    
-   //Координаты области экрана по которой будем проверять, что ресурс  занят
+   //РљРѕРѕСЂРґРёРЅР°С‚С‹ РѕР±Р»Р°СЃС‚Рё СЌРєСЂР°РЅР° РїРѕ РєРѕС‚РѕСЂРѕР№ Р±СѓРґРµРј РїСЂРѕРІРµСЂСЏС‚СЊ, С‡С‚Рѕ СЂРµСЃСѓСЂСЃ  Р·Р°РЅСЏС‚
    //   $Field_CheckScreen_Xstart = 1107
    //   $Field_CheckScreen_Ystart = 623
    //
